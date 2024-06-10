@@ -48,6 +48,7 @@ void MasterMind::generateRandomSolution() {
     if (solution.empty() || config.codeLength == 0) {
         throw std::runtime_error("Error: solution is empty or code length = 0");
     }
+    if(config.comunication)std::cout<<"Randomly generated solution: "<<solution;
 }
 
 

@@ -18,6 +18,7 @@ struct Guessed {
 struct Config {
     int codeLength=3;
     std::string pathColorFile;
+    bool comunication = true;
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);

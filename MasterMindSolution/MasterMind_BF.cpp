@@ -22,7 +22,7 @@ color_t MasterMind_BF::bruteForceSolution() {
 
     for (const auto& combination : combinations) {
         if (isCorrectGuess(combination)) {
-            std::cout << "Solution found (BF): " << combination;
+            if(config.comunication) std::cout << "Solution found (BF): " << combination;
             return combination;
         }
     }
