@@ -6,6 +6,8 @@
 #include <random>
 #include <vector>
 #include <fstream>
+#include <stdexcept>
+#include <algorithm>
 
 class Meh_solution {
 public:
