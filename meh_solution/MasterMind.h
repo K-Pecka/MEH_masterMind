@@ -20,10 +20,11 @@ struct Config {
     int codeLength=3;
     std::string pathColorFile;
     bool communication = true;
+    int maxInteraction = 100;
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);
-
+std::ostream& operator<<(std::ostream& o, const std::vector<bool>& result);
 class MasterMind {
 public:
     MasterMind() = default;
@@ -38,7 +39,9 @@ public:
     bool betterSolution(const color_t &guess);
     int checkColor(const color_t&);
     int checkColor(std::vector<std::pair<std::string, bool>>&);
+    std::vector<bool> getCorrectPosition(color_t,color_t);
     color_t generateNeighbor(const color_t& currentSolution);
+    void showCorrectPosition(std::vector<bool>);
 protected:
     Config config;
     std::vector<std::pair<std::string, bool>> solution;

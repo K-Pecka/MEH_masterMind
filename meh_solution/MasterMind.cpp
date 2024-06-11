@@ -14,7 +14,20 @@ std::ostream& operator<<(std::ostream& o, const color_t& g) {
     o << std::endl;
     return o;
 }
-
+std::ostream& operator<<(std::ostream& o, const std::vector<std::pair<std::string, bool>>& g) {
+    for (const auto& color : g) {
+        o << color.first << " ";
+    }
+    o << std::endl;
+    return o;
+}
+std::ostream& operator<<(std::ostream& o, const std::vector<bool>& result) {
+    for(bool position : result) {
+        o << (position ? "1" : "0")<<" ";
+    }
+    o << std::endl;
+    return o;
+}
 void MasterMind::init() {
     try {
         loadGuessesFromFile();
@@ -95,4 +108,22 @@ color_t MasterMind::generateNeighbor(const color_t &currentSolution) {
         }
     }
     return newSolution;
+}
+
+std::vector<bool> MasterMind::getCorrectPosition(color_t colorCorrect, color_t colorGuess) {
+    std::vector<bool> correct(config.codeLength, false);
+    for (size_t i = 0; i < colorCorrect.size(); ++i) {
+        correct[i] = (colorCorrect[i] == colorGuess[i]);
+    }
+    return correct;
+}
+
+void MasterMind::showCorrectPosition(std::vector<bool> positions) {
+    float count=0;
+    for(bool position : positions) {
+        if(position)count++;
+    }
+    std::cout<<positions;
+    std::cout<<count<<"/"<<config.codeLength<<std::endl;
+    std::cout<<(count/config.codeLength)*100<<"%"<<std::endl;
 }
