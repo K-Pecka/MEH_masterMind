@@ -1,6 +1,7 @@
 #include "MasterMind_BF.h"
 
 color_t MasterMind_BF::goal()  {
+    if(config.communication) std::cout << "Solution found (BF): ";
     return bruteForceSolution();
 }
 void MasterMind_BF::generateAllCombinations(int codeLength, std::vector<color_t>& combinations, color_t& currentCombination) {
@@ -21,8 +22,7 @@ color_t MasterMind_BF::bruteForceSolution() {
     generateAllCombinations(config.codeLength, combinations, currentCombination);
 
     for (const auto& combination : combinations) {
-        if (isCorrectGuess(combination)) {
-            if(config.comunication) std::cout << "Solution found (BF): " << combination;
+        if (combination == correctSolution) {
             return combination;
         }
     }

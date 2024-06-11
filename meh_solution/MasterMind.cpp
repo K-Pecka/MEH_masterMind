@@ -18,13 +18,17 @@ std::ostream& operator<<(std::ostream& o, const color_t& g) {
 void MasterMind::init() {
     try {
         loadGuessesFromFile();
-        generateRandomSolution();
+        correctSolution = generateRandomSolution();
+        solution = std::vector<std::pair<std::string, bool>>(config.codeLength, {"", false});
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
         exit(-1);
     }
 }
-
+color_t MasterMind::getGuessSolution() {
+    if(config.communication)std::cout << "Solution: ";
+    return correctSolution;
+}
 void MasterMind::loadGuessesFromFile() {
     std::ifstream file(config.pathColorFile);
 
@@ -39,20 +43,56 @@ void MasterMind::loadGuessesFromFile() {
     }
     file.close();
 }
-
-void MasterMind::generateRandomSolution() {
-    solution.clear();
+int MasterMind::randomColor() const
+{
+    return randomInt(0, (int)possibleColors.colors.size() - 1);
+}
+color_t MasterMind::generateRandomSolution() {
+    color_t randomSolution;
     for (int i = 0; i < config.codeLength; ++i) {
-        solution.push_back(possibleColors.colors[randomInt(0, (int)possibleColors.colors.size() - 1)]);
+        randomSolution.push_back(possibleColors.colors[randomColor()]);
     }
-    if (solution.empty() || config.codeLength == 0) {
+    if (randomSolution.empty() || config.codeLength == 0) {
         throw std::runtime_error("Error: solution is empty or code length = 0");
     }
-    if(config.comunication)std::cout<<"Randomly generated solution: "<<solution;
+    return randomSolution;
 }
 
+bool MasterMind::betterSolution(const color_t &guess) {
 
+    if (checkColor(guess) > checkColor(correctSolution)) {
+        for (size_t i = 0; i < guess.size(); ++i) {
+            solution[i] = {guess[i], guess[i] == correctSolution[i]};
+        }
+        return true;
+    }
+    return false;
+}
+int MasterMind::checkColor(std::vector<std::pair<std::string, bool>>& guess) {
+    int correct = 0;
+    for (auto & gues : guess) {
+        if (gues.second) {
+            correct++;
+        }
+    }
+    return correct;
+}
 
-bool MasterMind::isCorrectGuess(const color_t& guess) {
-    return guess == solution;
+int MasterMind::checkColor(const color_t& guess) {
+    int correct = 0;
+    for (size_t i = 0; i < guess.size(); ++i) {
+        if (guess[i] == correctSolution[i]) {
+            correct++;
+        }
+    }
+    return correct;
+}
+color_t MasterMind::generateNeighbor(const color_t &currentSolution) {
+    color_t newSolution = currentSolution;
+    for (size_t i = 0; i < newSolution.size(); ++i) {
+        if (!solution[i].second) {
+            newSolution[i] = possibleColors.colors[randomColor()];
+        }
+    }
+    return newSolution;
 }

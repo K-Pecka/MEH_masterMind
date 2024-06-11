@@ -9,6 +9,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <algorithm>
+#include <utility>
 
 using color_t = std::vector<std::string>;
 
@@ -18,7 +19,7 @@ struct Guessed {
 struct Config {
     int codeLength=3;
     std::string pathColorFile;
-    bool comunication = true;
+    bool communication = true;
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);
@@ -31,13 +32,18 @@ public:
     static int randomInt(int,int);
     void loadGuessesFromFile();
     void init();
-    void generateRandomSolution();
-    color_t getGuessSolution() { return solution; }
-    bool isCorrectGuess(const color_t&);
+    color_t generateRandomSolution();
+    color_t getGuessSolution();
+    int randomColor() const;
+    bool betterSolution(const color_t &guess);
+    int checkColor(const color_t&);
+    int checkColor(std::vector<std::pair<std::string, bool>>&);
+    color_t generateNeighbor(const color_t& currentSolution);
 protected:
     Config config;
+    std::vector<std::pair<std::string, bool>> solution;
     Guessed possibleColors;
-    color_t solution;
+    color_t correctSolution;
 };
 
 

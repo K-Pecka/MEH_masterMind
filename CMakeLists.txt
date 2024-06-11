@@ -5,4 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(MEH_pjwstk main.cpp
         meh_solution/MasterMind.cpp
-        MasterMindSolution/MasterMind_BF.cpp)
+        MasterMindSolution/MasterMind_BF.cpp
+        MasterMindSolution/MasterMind_hill_climbing.cpp
+        MasterMindSolution/MasterMind_hill_climbing.h
+        MasterMindSolution/MasterMind_hill_climbing.h)
