@@ -6,7 +6,7 @@
 
 
 int main(int argc, char* argv[]) {
-    Config config = {5, "../data/color.txt", true,10000};
+    Config config = {150, "../data/color.txt", true,10000};
 
     std::unordered_map<std::string, std::function<void(const Config&)>> solvers = {
             {"solve_BF", [&config](const Config& cfg) {

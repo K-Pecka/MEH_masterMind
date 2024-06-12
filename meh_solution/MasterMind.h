@@ -35,6 +35,7 @@ public:
     void init();
     color_t generateRandomSolution();
     color_t getGuessSolution();
+    color_t getSolution();
     int randomColor() const;
     bool betterSolution(const color_t &guess);
     int checkColor(const color_t&);

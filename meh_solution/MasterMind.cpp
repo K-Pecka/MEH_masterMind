@@ -16,7 +16,7 @@ std::ostream& operator<<(std::ostream& o, const color_t& g) {
 }
 std::ostream& operator<<(std::ostream& o, const std::vector<std::pair<std::string, bool>>& g) {
     for (const auto& color : g) {
-        o << color.first << " ";
+        o <<"{"<< color.first << ","<<color.second<<"}";
     }
     o << std::endl;
     return o;
@@ -72,8 +72,8 @@ color_t MasterMind::generateRandomSolution() {
 }
 
 bool MasterMind::betterSolution(const color_t &guess) {
-
-    if (checkColor(guess) > checkColor(correctSolution)) {
+   // std::cout<<getCorrectPosition(guess,correctSolution);
+    if (checkColor(guess) > checkColor(solution)) {
         for (size_t i = 0; i < guess.size(); ++i) {
             solution[i] = {guess[i], guess[i] == correctSolution[i]};
         }
@@ -81,24 +81,24 @@ bool MasterMind::betterSolution(const color_t &guess) {
     }
     return false;
 }
-int MasterMind::checkColor(std::vector<std::pair<std::string, bool>>& guess) {
-    int correct = 0;
-    for (auto & gues : guess) {
-        if (gues.second) {
-            correct++;
-        }
-    }
-    return correct;
-}
-
 int MasterMind::checkColor(const color_t& guess) {
-    int correct = 0;
+    int correctColors = 0;
     for (size_t i = 0; i < guess.size(); ++i) {
         if (guess[i] == correctSolution[i]) {
-            correct++;
+            correctColors++;
         }
     }
-    return correct;
+    return correctColors;
+}
+
+int MasterMind::checkColor(std::vector<std::pair<std::string, bool>>& solution) {
+    int correctColors = 0;
+    for (auto & pair : solution) {
+        if (pair.second) {
+            correctColors++;
+        }
+    }
+    return correctColors;
 }
 color_t MasterMind::generateNeighbor(const color_t &currentSolution) {
     color_t newSolution = currentSolution;
@@ -126,4 +126,13 @@ void MasterMind::showCorrectPosition(std::vector<bool> positions) {
     std::cout<<positions;
     std::cout<<count<<"/"<<config.codeLength<<std::endl;
     std::cout<<(count/config.codeLength)*100<<"%"<<std::endl;
+}
+
+color_t MasterMind::getSolution() {
+   color_t solutionL;
+   for(const auto& solutionColor: solution)
+   {
+       solutionL.push_back(solutionColor.first);
+   }
+    return solutionL;
 }
