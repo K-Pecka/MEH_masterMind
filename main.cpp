@@ -6,7 +6,7 @@
 
 
 int main(int argc, char* argv[]) {
-    Config config = {150, "../data/color.txt", true,10000};
+    Config config = {15, "../data/color.txt", true,1000};
 
     std::unordered_map<std::string, std::function<void(const Config&)>> solvers = {
             {"solve_BF", [&config](const Config& cfg) {
@@ -18,14 +18,13 @@ int main(int argc, char* argv[]) {
                 MasterMind_hill_climbing masterMind(cfg);
 
                 color_t solution=masterMind.getGuessSolution();
-                std::cout << solution;
+                //std::cout << solution;
 
                 color_t result=masterMind.goal();
-                std::cout << result;
-                if(config.communication){
+                //std::cout << result;
+
                     std::vector<bool> correctPosition = masterMind.getCorrectPosition(result, solution);
-                    if(config.communication) masterMind.showCorrectPosition(correctPosition);
-                }
+                    masterMind.showCorrectPosition(correctPosition);
 
             }}
     };

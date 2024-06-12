@@ -77,7 +77,7 @@ bool MasterMind::betterSolution(const color_t &guess) {
         for (size_t i = 0; i < guess.size(); ++i) {
             solution[i] = {guess[i], guess[i] == correctSolution[i]};
         }
-        return true;
+        return checkColor(solution) == config.codeLength;
     }
     return false;
 }

@@ -12,10 +12,16 @@ K
 L
 M
 N
+O
 P
 R
 S
 T
+U
+W
+X
+Y
+Z
 1
 2
 3
