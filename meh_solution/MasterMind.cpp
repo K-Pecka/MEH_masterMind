@@ -1,12 +1,5 @@
 #include "MasterMind.h"
 
-int MasterMind::randomInt(int min, int max){
-    using namespace std;
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> dis(min, max);
-    return dis(gen);
-}
 std::ostream& operator<<(std::ostream& o, const color_t& g) {
     for (const auto& color : g) {
         o << color << " ";
@@ -28,9 +21,18 @@ std::ostream& operator<<(std::ostream& o, const std::vector<bool>& result) {
     o << std::endl;
     return o;
 }
+int MasterMind::randomInt(int min, int max){
+    using namespace std;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dis(min, max);
+    return dis(gen);
+}
+
 void MasterMind::init() {
     try {
-        loadGuessesFromFile();
+        possibleColors.colors.clear();
+        possibleColors.colors=loadFile(config.pathColorFile);
         correctSolution = generateRandomSolution();
         solution = std::vector<std::pair<std::string, bool>>(config.codeLength, {"", false});
     } catch (const std::runtime_error& e) {
@@ -38,23 +40,25 @@ void MasterMind::init() {
         exit(-1);
     }
 }
+
 color_t MasterMind::getGuessSolution() {
     if(config.communication)std::cout << "Solution: ";
     return correctSolution;
 }
-void MasterMind::loadGuessesFromFile() {
-    std::ifstream file(config.pathColorFile);
+color_t MasterMind::loadFile(const std::string& path) const {
+    std::ifstream file(path);
 
-    possibleColors.colors.clear();
+    std::vector<std::string> content;
 
     if (!file.is_open()) {
         throw std::runtime_error("Error: Unable to open file " + config.pathColorFile);
     }
     std::string temp;
     while (file >> temp) {
-        possibleColors.colors.push_back(temp);
+        content.push_back(temp);
     }
     file.close();
+    return content;
 }
 int MasterMind::randomColor() const
 {

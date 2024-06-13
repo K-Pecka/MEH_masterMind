@@ -17,10 +17,11 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct Config {
-    int codeLength=3;
-    std::string pathColorFile;
-    bool communication = true;
-    int maxInteraction = 100;
+    std::string selected_solver = "solve_hill_climbing";
+    std::string pathColorFile = "../data/color.txt";
+    int codeLength = 30;
+    bool communication = false;
+    int maxInteraction = 10;
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);
@@ -30,21 +31,31 @@ public:
     MasterMind() = default;
     explicit MasterMind(Config configGame) : config(std::move(configGame)) {init();}
     virtual color_t goal() = 0;
+
+    static int randomInt(int,int);
+    color_t loadFile(const std::string&) const;
+    void init();
+
     void printSolve();
     void setSolution(color_t);
-    static int randomInt(int,int);
-    void loadGuessesFromFile();
-    void init();
+
+
     color_t generateRandomSolution();
     color_t getGuessSolution();
+
     color_t getSolution();
-    int randomColor() const;
     bool betterSolution(const color_t &guess);
+
+    int randomColor() const;
+
     int checkColor(const color_t&);
     int checkColor(std::vector<std::pair<std::string, bool>>&);
+
     std::vector<bool> getCorrectPosition(color_t,color_t);
-    color_t generateNeighbor(const color_t& currentSolution);
     void showCorrectPosition(std::vector<bool>);
+
+    color_t generateNeighbor(const color_t& currentSolution);
+
 protected:
     Config config;
     std::vector<std::pair<std::string, bool>> solution;
