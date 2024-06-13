@@ -30,6 +30,8 @@ public:
     MasterMind() = default;
     explicit MasterMind(Config configGame) : config(std::move(configGame)) {init();}
     virtual color_t goal() = 0;
+    void printSolve();
+    void setSolution(color_t);
     static int randomInt(int,int);
     void loadGuessesFromFile();
     void init();

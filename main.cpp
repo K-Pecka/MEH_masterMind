@@ -6,45 +6,36 @@
 
 
 int main(int argc, char* argv[]) {
-    Config config = {15, "../data/color.txt", true,1000};
+    Config config = {30, "../data/color.txt", false,100};
 
-    std::unordered_map<std::string, std::function<void(const Config&)>> solvers = {
-            {"solve_BF", [&config](const Config& cfg) {
-                MasterMind_BF masterMind(cfg);
-                std::cout << masterMind.getGuessSolution();
-                std::cout << masterMind.goal();
-            }},
-            {"solve_hill_climbing", [&config](const Config& cfg) {
-                MasterMind_hill_climbing masterMind(cfg);
-
-                color_t solution=masterMind.getGuessSolution();
-                //std::cout << solution;
-
-                color_t result=masterMind.goal();
-                //std::cout << result;
-
-                    std::vector<bool> correctPosition = masterMind.getCorrectPosition(result, solution);
-                    masterMind.showCorrectPosition(correctPosition);
-
-            }}
+    std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
+            {"solve_BF", [](const Config& cfg) { return std::make_unique<MasterMind_BF>(cfg); }},
+            {"solve_hill_climbing", [](const Config& cfg) { return std::make_unique<MasterMind_hill_climbing>(cfg); }}
     };
 
     std::string selected_solver = "solve_hill_climbing";
-    if (argc >= 2) {
+    std::string param = "";
+    if (argc >= 3) {
+        selected_solver = argv[1];
+        param = argv[2];
+    }else if(argc >=2){
         selected_solver = argv[1];
     }
+
 
     auto solver_it = solvers.find(selected_solver);
     if (solver_it != solvers.end()) {
         auto start_time = std::chrono::system_clock::now();
-        solver_it->second(config);
+        auto solver = solver_it->second(config);
+        solver->printSolve();
         auto end_time = std::chrono::system_clock::now();
-        auto computation_time =  std::chrono::nanoseconds(end_time - start_time);
-        std::cout<<computation_time/1000<<std::endl;
+        auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+        std::cout << computation_time.count() << " microseconds" << std::endl;
     } else {
         std::cerr << "Unknown solver: " << selected_solver << std::endl;
         return 1;
     }
+
 
     return 0;
 }

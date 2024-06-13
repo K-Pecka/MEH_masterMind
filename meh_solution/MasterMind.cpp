@@ -15,8 +15,8 @@ std::ostream& operator<<(std::ostream& o, const color_t& g) {
     return o;
 }
 std::ostream& operator<<(std::ostream& o, const std::vector<std::pair<std::string, bool>>& g) {
-    for (const auto& color : g) {
-        o <<"{"<< color.first << ","<<color.second<<"}";
+    for (const auto& pair : g) {
+        o <<"{"<< pair.first << ","<<pair.second<<"}";
     }
     o << std::endl;
     return o;
@@ -70,13 +70,10 @@ color_t MasterMind::generateRandomSolution() {
     }
     return randomSolution;
 }
-
 bool MasterMind::betterSolution(const color_t &guess) {
    // std::cout<<getCorrectPosition(guess,correctSolution);
     if (checkColor(guess) > checkColor(solution)) {
-        for (size_t i = 0; i < guess.size(); ++i) {
-            solution[i] = {guess[i], guess[i] == correctSolution[i]};
-        }
+        setSolution(guess);
         return checkColor(solution) == config.codeLength;
     }
     return false;
@@ -135,4 +132,18 @@ color_t MasterMind::getSolution() {
        solutionL.push_back(solutionColor.first);
    }
     return solutionL;
+}
+void MasterMind::printSolve() {
+    if(config.communication) std::cout << "Correct solution: ";
+    std::cout<<correctSolution;
+    goal();
+    std::cout<<getSolution();
+
+    showCorrectPosition(getCorrectPosition( correctSolution,getSolution()));
+}
+
+void MasterMind::setSolution(color_t guess) {
+    for (size_t i = 0; i < guess.size(); ++i) {
+        solution[i] = {guess[i], guess[i] == correctSolution[i]};
+    }
 }

@@ -2,8 +2,11 @@
 
 color_t MasterMind_hill_climbing::goal() {
     if (config.communication) std::cout << "Solution found (Hill climbing): "<<std::endl;
-    betterSolution(generateRandomSolution());
-    if (config.communication) std::cout << "Initial random solution: "<<getSolution();
+    setSolution(generateRandomSolution());
+    if (config.communication){
+        std::cout << "Initial random solution: "<<getSolution();
+        std::cout <<"Initial random solution: "<<getCorrectPosition(getSolution(),correctSolution);
+    }
     int improvement = config.maxInteraction;
     while (improvement != 0){
         color_t neighbor = generateNeighbor(getSolution());
@@ -17,4 +20,3 @@ color_t MasterMind_hill_climbing::goal() {
     }
     return getSolution();
 }
-
