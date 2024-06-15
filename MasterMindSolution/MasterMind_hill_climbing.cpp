@@ -12,7 +12,10 @@ color_t MasterMind_hill_climbing::goal() {
         color_t neighbor = generateNeighbor(getSolution());
         if (config.communication)
         {
-           std::cout << "Neighbor: " << getCorrectPosition(neighbor,getSolution());
+            std::cout<<getSolution();
+            std::cout<<neighbor;
+            std::cout <<getCorrectPosition(neighbor,getSolution());
+            std::cout<<std::endl;
         }
 
         if(betterSolution(neighbor))break;

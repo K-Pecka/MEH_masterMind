@@ -21,7 +21,7 @@ struct Config {
     std::string pathColorFile = "../data/color.txt";
     int codeLength = 30;
     bool communication = false;
-    int maxInteraction = 10;
+    int maxInteraction = 100;
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);

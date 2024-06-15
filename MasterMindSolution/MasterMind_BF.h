@@ -11,7 +11,7 @@ public:
     explicit MasterMind_BF(Config configGame) : MasterMind(std::move(configGame)) {}
     color_t goal() override;
     color_t bruteForceSolution() ;
-    void generateAllCombinations(int, std::vector<color_t>&, color_t&);
+    void generateAllCombinations(int, std::vector<color_t>&, color_t&,int);
 };
 
 #endif //MEH_PJWSTK_MASTERMIND_BF_H

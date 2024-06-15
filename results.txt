@@ -1,6 +1,65 @@
-111011
-100101
-110001
-001101
-001110
-001100
+Benchmark results:
+Testing solve_hill_climbing with code length 10, max interaction 10, communication false
+
+Testing solve_hill_climbing with code length 10, max interaction 10, communication true
+
+Testing solve_hill_climbing with code length 10, max interaction 50, communication false
+
+Testing solve_hill_climbing with code length 10, max interaction 50, communication true
+
+Testing solve_hill_climbing with code length 10, max interaction 100, communication false
+
+Testing solve_hill_climbing with code length 10, max interaction 100, communication true
+
+Testing solve_hill_climbing with code length 10, max interaction 200, communication false
+
+Testing solve_hill_climbing with code length 10, max interaction 200, communication true
+
+Testing solve_hill_climbing with code length 20, max interaction 10, communication false
+
+Testing solve_hill_climbing with code length 20, max interaction 10, communication true
+
+Testing solve_hill_climbing with code length 20, max interaction 50, communication false
+
+Testing solve_hill_climbing with code length 20, max interaction 50, communication true
+
+Testing solve_hill_climbing with code length 20, max interaction 100, communication false
+
+Testing solve_hill_climbing with code length 20, max interaction 100, communication true
+
+Testing solve_hill_climbing with code length 20, max interaction 200, communication false
+
+Testing solve_hill_climbing with code length 20, max interaction 200, communication true
+
+Testing solve_hill_climbing with code length 30, max interaction 10, communication false
+
+Testing solve_hill_climbing with code length 30, max interaction 10, communication true
+
+Testing solve_hill_climbing with code length 30, max interaction 50, communication false
+
+Testing solve_hill_climbing with code length 30, max interaction 50, communication true
+
+Testing solve_hill_climbing with code length 30, max interaction 100, communication false
+
+Testing solve_hill_climbing with code length 30, max interaction 100, communication true
+
+Testing solve_hill_climbing with code length 30, max interaction 200, communication false
+
+Testing solve_hill_climbing with code length 30, max interaction 200, communication true
+
+Testing solve_hill_climbing with code length 40, max interaction 10, communication false
+
+Testing solve_hill_climbing with code length 40, max interaction 10, communication true
+
+Testing solve_hill_climbing with code length 40, max interaction 50, communication false
+
+Testing solve_hill_climbing with code length 40, max interaction 50, communication true
+
+Testing solve_hill_climbing with code length 40, max interaction 100, communication false
+
+Testing solve_hill_climbing with code length 40, max interaction 100, communication true
+
+Testing solve_hill_climbing with code length 40, max interaction 200, communication false
+
+Testing solve_hill_climbing with code length 40, max interaction 200, communication true
+

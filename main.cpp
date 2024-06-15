@@ -24,7 +24,12 @@ int main(int argc, char* argv[]) {
     if (solver_it != solvers.end()) {
         auto start_time = std::chrono::system_clock::now();
         auto solver = solver_it->second(config);
-        solver->printSolve();
+        try{
+            solver->printSolve();
+        }catch (const std::runtime_error& e) {
+            std::cerr << e.what() << std::endl;
+            exit(-1);
+        }
         auto end_time = std::chrono::system_clock::now();
         auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
         std::cout << computation_time.count() << " microseconds" << std::endl;
