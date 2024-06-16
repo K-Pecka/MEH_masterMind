@@ -1,23 +1,43 @@
 #include <iostream>
 #include <unordered_map>
 #include <functional>
+#include "MasterMindSolution/MasterMind_random.h"
 #include "MasterMindSolution/MasterMind_BF.h"
 #include "MasterMindSolution/MasterMind_hill_climbing.h"
 
 int main(int argc, char* argv[]) {
+
+    std::vector<std::string> args(argv,argc+argv);
     std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
+            {"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
             {"solve_BF", [](const Config& cfg) { return std::make_unique<MasterMind_BF>(cfg); }},
             {"solve_hill_climbing", [](const Config& cfg) { return std::make_unique<MasterMind_hill_climbing>(cfg); }}
     };
 
     Config config;
-    if (argc >= 2) {config.selected_solver = argv[1];}
-    if (argc >= 3) {config.codeLength = std::stoi(argv[2]);}
-    if (argc >= 4) {config.maxInteraction = std::stoi(argv[3]);}
-    if (argc >= 6) {config.pathColorFile = argv[5];}
-    if (argc >= 5) {
-        std::string comm = argv[4];
-        config.communication = (comm == "true" || comm == "1");
+    for(int i=0;i<args.size();i++)
+    {
+        if(args[i] == "-method")
+        {
+            config.selected_solver = args[i+1];
+        }
+        if(args[i] == "-length")
+        {
+            config.codeLength = std::stoi(args[i + 1]);
+        }
+        if(args[i] == "-interaction")
+        {
+            config.maxInteraction = std::stoi(args[i+1]);
+        }
+        if(args[i] == "-path")
+        {
+            config.pathColorFile = args[i+1];
+        }
+        if(args[i] == "-communication")
+        {
+            std::string comm = args[i+1];
+            config.communication = (comm == "true" || comm == "1");
+        }
     }
 
     auto solver_it = solvers.find(config.selected_solver);

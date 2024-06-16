@@ -142,8 +142,7 @@ void MasterMind::printSolve() {
     std::cout<<correctSolution;
     goal();
     std::cout<<getSolution();
-    if(config.communication)showCorrectPosition(getCorrectPosition( correctSolution,getSolution()));
-    std::cout<<getCorrectPosition( correctSolution,getSolution());
+    showCorrectPosition(getCorrectPosition( correctSolution,getSolution()));
 }
 
 void MasterMind::setSolution(color_t guess) {

@@ -8,4 +8,7 @@ add_executable(MEH_pjwstk main.cpp
         MasterMindSolution/MasterMind_BF.cpp
         MasterMindSolution/MasterMind_hill_climbing.cpp
         MasterMindSolution/MasterMind_hill_climbing.h
-        MasterMindSolution/MasterMind_hill_climbing.h)
+        MasterMindSolution/MasterMind_hill_climbing.h
+        MasterMindSolution/MasterMind_random.cpp
+        MasterMindSolution/MasterMind_random.h
+        MasterMindSolution/MasterMind_random.h)

@@ -17,7 +17,7 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct Config {
-    std::string selected_solver = "solve_hill_climbing";
+    std::string selected_solver = "solve_random";
     std::string pathColorFile = "../data/color.txt";
     int codeLength = 30;
     bool communication = false;
