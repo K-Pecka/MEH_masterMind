@@ -17,23 +17,23 @@ int main(int argc, char* argv[]) {
     Config config;
     for(int i=0;i<args.size();i++)
     {
-        if(args[i] == "-method")
+        if(args[i] == "-method" || args[i] == "-m")
         {
             config.selected_solver = args[i+1];
         }
-        if(args[i] == "-length")
+        if(args[i] == "-length" || args[i] == "-l")
         {
             config.codeLength = std::stoi(args[i + 1]);
         }
-        if(args[i] == "-interaction")
+        if(args[i] == "-interaction" || args[i] == "-i")
         {
             config.maxInteraction = std::stoi(args[i+1]);
         }
-        if(args[i] == "-path")
+        if(args[i] == "-path" || args[i] == "-p")
         {
             config.pathColorFile = args[i+1];
         }
-        if(args[i] == "-communication")
+        if(args[i] == "-communication" || args[i] == "-c")
         {
             std::string comm = args[i+1];
             config.communication = (comm == "true" || comm == "1");
