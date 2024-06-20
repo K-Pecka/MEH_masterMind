@@ -120,6 +120,12 @@ color_t MasterMind::theBestNeighbor(std::vector<color_t>& neighbors)
 
     return it;
 }
+color_t MasterMind::randomNeighbor(std::vector<color_t> & neighbors) {
+    if (neighbors.empty()) {
+        throw std::invalid_argument("neighbor list is empty");
+    }
+    return neighbors[randomInt(0,neighbors.size()-1)];
+}
 std::vector<bool> MasterMind::getCorrectPosition(color_t colorCorrect, color_t colorGuess) const {
     std::vector<bool> correct(config.codeLength, false);
     for (size_t i = 0; i < colorCorrect.size(); ++i) {

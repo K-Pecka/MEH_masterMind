@@ -12,7 +12,9 @@
 #include <utility>
 
 using color_t = std::vector<std::string>;
-
+enum Param{
+    RANDOM,DETERMINISTIC
+};
 struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
@@ -20,9 +22,9 @@ struct Config {
     std::string selected_solver = "solve_hill_climbing";
     std::string pathColorFile = "../data/color.txt";
     int codeLength = 10;
-    bool communication = false;
+    bool communication = true;
     int maxInteraction = 100;
-    std::string param = "random";
+    std::vector<Param> params = std::vector<Param>(3);
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);
@@ -58,6 +60,7 @@ public:
     //color_t generateNeighbor(const color_t& currentSolution);
     std::vector<color_t> generateNeighbor();
     color_t theBestNeighbor(std::vector<color_t>&);
+    static color_t randomNeighbor(std::vector<color_t>&);
 protected:
     Config config;
     std::vector<std::pair<std::string, bool>> solution;

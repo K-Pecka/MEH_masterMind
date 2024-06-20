@@ -5,7 +5,7 @@ color_t MasterMind_random::goal() {
     int counter = config.maxInteraction;
     while(counter)
     {
-        betterSolution(getGuessSolution());
+        betterSolution(generateRandomSolution());
         counter--;
     }
     return getGuessSolution();

@@ -8,6 +8,10 @@
 int main(int argc, char* argv[]) {
 
     std::vector<std::string> args(argv,argc+argv);
+    std::unordered_map<std::string,Param> params ={
+            {"random",Param::RANDOM},
+            {"deterministic",Param::DETERMINISTIC}
+    };
     std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
             {"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
             {"solve_BF", [](const Config& cfg) { return std::make_unique<MasterMind_BF>(cfg); }},
@@ -20,6 +24,19 @@ int main(int argc, char* argv[]) {
         if(args[i] == "-method" || args[i] == "-m")
         {
             config.selected_solver = args[i+1];
+        }
+        if(args[i] == "-param")
+        {
+            while (i + 1 < args.size() && args[i + 1][0] != '-') {
+                std::string paramStr = args[++i];
+                std::cout<<paramStr<<std::endl;
+                if (params.count(paramStr)) {
+                    config.params.push_back(params[paramStr]);
+
+                } else {
+                    std::cerr << "Unknown parameter: " << paramStr << std::endl;
+                }
+            }
         }
         if(args[i] == "-length" || args[i] == "-l")
         {
@@ -39,13 +56,15 @@ int main(int argc, char* argv[]) {
             config.communication = (comm == "true" || comm == "1");
         }
     }
-
     auto solver_it = solvers.find(config.selected_solver);
     if (solver_it != solvers.end()) {
         auto solver = solver_it->second(config);
         try{
             solver->printSolve();
         }catch (const std::runtime_error& e) {
+            std::cerr << e.what() << std::endl;
+            exit(-1);
+        }catch (const std::invalid_argument& e) {
             std::cerr << e.what() << std::endl;
             exit(-1);
         }
