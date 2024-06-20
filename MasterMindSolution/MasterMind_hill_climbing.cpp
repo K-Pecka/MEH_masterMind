@@ -9,16 +9,18 @@ color_t MasterMind_hill_climbing::goal() {
     }
     int improvement = config.maxInteraction;
     while (improvement != 0){
-        color_t neighbor = generateNeighbor(getSolution());
+        auto neighbors = generateNeighbor();
+        color_t bestNeighbor = theBestNeighbor(neighbors);
         if (config.communication)
         {
-            std::cout<<getSolution();
-            std::cout<<neighbor;
-            std::cout <<getCorrectPosition(neighbor,getSolution());
+            std::cout<<std::endl;
+            std::cout<<"S>"<<getSolution();
+            std::cout<<"N>"<<bestNeighbor;
+            std::cout <<getCorrectPosition(bestNeighbor,correctSolution);
             std::cout<<std::endl;
         }
 
-        if(betterSolution(neighbor))break;
+        if(!betterSolution(bestNeighbor))break;
         improvement--;
     }
     return getSolution();

@@ -42,7 +42,6 @@ int main(int argc, char* argv[]) {
 
     auto solver_it = solvers.find(config.selected_solver);
     if (solver_it != solvers.end()) {
-        auto start_time = std::chrono::system_clock::now();
         auto solver = solver_it->second(config);
         try{
             solver->printSolve();
@@ -50,9 +49,6 @@ int main(int argc, char* argv[]) {
             std::cerr << e.what() << std::endl;
             exit(-1);
         }
-        auto end_time = std::chrono::system_clock::now();
-        auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
-        std::cout << computation_time.count() << " microseconds" << std::endl;
     } else {
         std::cerr << "Unknown solver: " << config.selected_solver << std::endl;
         return 1;

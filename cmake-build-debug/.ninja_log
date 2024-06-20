@@ -1,9 +1,12 @@
 # ninja log v5
-2	5021	7402710772696919	CMakeFiles/MEH_pjwstk.dir/main.cpp.obj	9440d15d7901228
 1	4864	7397516015400233	CMakeFiles/MEH_pjwstk.dir/meh_solution/Meh_solution.cpp.obj	4c91f171cf36e9b8
-2	6012	7402709441766380	CMakeFiles/MEH_pjwstk.dir/meh_solution/MasterMind.cpp.obj	356bc4e2814244ad
-5023	18572	7402710888909352	MEH_pjwstk.exe	8fdf7103d662c6ec
-5948	10474	7402709486663206	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_random.cpp.obj	51b66507ed475fb5
+149	10522	7406131363258781	CMakeFiles/MEH_pjwstk.dir/main.cpp.obj	9440d15d7901228
+212	10945	7406131362398768	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_random.cpp.obj	51b66507ed475fb5
+17825	24761	7406131492149361	MEH_pjwstk.exe	8fdf7103d662c6ec
+1	11251	7406131363488761	CMakeFiles/MEH_pjwstk.dir/meh_solution/MasterMind.cpp.obj	356bc4e2814244ad
 161	12713	7397547008962346	CMakeFiles/MEH_pjwstk.dir/MasterMind/MasterMind.cpp.obj	2701a183d68858b8
-5319	10492	7402709486683219	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_BF.cpp.obj	e130729f5ce8d140
-245	5316	7402709434979580	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_hill_climbing.cpp.obj	e91ed588bd1ba398
+10548	17824	7406131437239416	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_BF.cpp.obj	e130729f5ce8d140
+10946	17718	7406131435939357	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_hill_climbing.cpp.obj	e91ed588bd1ba398
+121	6035	7406132430780405	CMakeFiles/MEH_pjwstk.dir/MasterMindSolution/MasterMind_hill_climbing.cpp.obj	e91ed588bd1ba398
+2	6321	7406132433540421	CMakeFiles/MEH_pjwstk.dir/meh_solution/MasterMind.cpp.obj	356bc4e2814244ad
+6322	9114	7406132456710437	MEH_pjwstk.exe	8fdf7103d662c6ec

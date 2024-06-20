@@ -17,11 +17,12 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct Config {
-    std::string selected_solver = "solve_random";
+    std::string selected_solver = "solve_hill_climbing";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 30;
+    int codeLength = 10;
     bool communication = false;
     int maxInteraction = 100;
+    std::string param = "random";
 };
 
 std::ostream& operator<<(std::ostream&, const color_t&);
@@ -49,13 +50,14 @@ public:
     int randomColor() const;
 
     int checkColor(const color_t&);
-    int checkColor(std::vector<std::pair<std::string, bool>>&);
+    static int checkColor(std::vector<std::pair<std::string, bool>>&);
 
-    std::vector<bool> getCorrectPosition(color_t,color_t);
-    void showCorrectPosition(std::vector<bool>);
+    std::vector<bool> getCorrectPosition(color_t,color_t) const;
+    void showCorrectPosition(const std::vector<bool>&) const;
 
-    color_t generateNeighbor(const color_t& currentSolution);
-
+    //color_t generateNeighbor(const color_t& currentSolution);
+    std::vector<color_t> generateNeighbor();
+    color_t theBestNeighbor(std::vector<color_t>&);
 protected:
     Config config;
     std::vector<std::pair<std::string, bool>> solution;

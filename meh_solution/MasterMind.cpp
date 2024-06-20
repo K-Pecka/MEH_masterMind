@@ -75,10 +75,10 @@ color_t MasterMind::generateRandomSolution() {
     return randomSolution;
 }
 bool MasterMind::betterSolution(const color_t &guess) {
-   // std::cout<<getCorrectPosition(guess,correctSolution);
+    if(config.communication)std::cout<<checkColor(guess)<<">"<<checkColor(solution)<<std::endl;
     if (checkColor(guess) > checkColor(solution)) {
         setSolution(guess);
-        return checkColor(solution) == config.codeLength;
+        return true;
     }
     return false;
 }
@@ -101,17 +101,26 @@ int MasterMind::checkColor(std::vector<std::pair<std::string, bool>>& solution) 
     }
     return correctColors;
 }
-color_t MasterMind::generateNeighbor(const color_t &currentSolution) {
-    color_t newSolution = currentSolution;
-    for (size_t i = 0; i < newSolution.size(); ++i) {
+std::vector<color_t> MasterMind::generateNeighbor() {
+    std::vector<color_t> result;
+    for (size_t i = 0; i < solution.size(); ++i) {
         if (!solution[i].second) {
-            newSolution[i] = possibleColors.colors[randomColor()];
+            color_t modified = getSolution();
+            modified[i] = possibleColors.colors[randomColor()];
+            result.push_back(modified);
         }
     }
-    return newSolution;
+    return result;
 }
+color_t MasterMind::theBestNeighbor(std::vector<color_t>& neighbors)
+{
+    auto it = *std::max_element(neighbors.begin(), neighbors.end(), [this](auto a, auto b) {
+        return checkColor(a) < checkColor(b);
+    });
 
-std::vector<bool> MasterMind::getCorrectPosition(color_t colorCorrect, color_t colorGuess) {
+    return it;
+}
+std::vector<bool> MasterMind::getCorrectPosition(color_t colorCorrect, color_t colorGuess) const {
     std::vector<bool> correct(config.codeLength, false);
     for (size_t i = 0; i < colorCorrect.size(); ++i) {
         correct[i] = (colorCorrect[i] == colorGuess[i]);
@@ -119,14 +128,14 @@ std::vector<bool> MasterMind::getCorrectPosition(color_t colorCorrect, color_t c
     return correct;
 }
 
-void MasterMind::showCorrectPosition(std::vector<bool> positions) {
+void MasterMind::showCorrectPosition(const std::vector<bool>& positions) const {
     float count=0;
     for(bool position : positions) {
         if(position)count++;
     }
     std::cout<<positions;
     std::cout<<count<<"/"<<config.codeLength<<std::endl;
-    std::cout<<(count/config.codeLength)*100<<"%"<<std::endl;
+    std::cout<<(count/float(config.codeLength))*100<<"%"<<std::endl;
 }
 
 color_t MasterMind::getSolution() {
@@ -140,9 +149,15 @@ color_t MasterMind::getSolution() {
 void MasterMind::printSolve() {
     if(config.communication) std::cout << "Correct solution: ";
     std::cout<<correctSolution;
+    auto start_time = std::chrono::system_clock::now();
     goal();
+    auto end_time = std::chrono::system_clock::now();
+    auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+
     std::cout<<getSolution();
     showCorrectPosition(getCorrectPosition( correctSolution,getSolution()));
+    std::cout << computation_time.count() << " microseconds" << std::endl;
+
 }
 
 void MasterMind::setSolution(color_t guess) {
