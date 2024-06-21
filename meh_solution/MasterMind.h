@@ -23,7 +23,7 @@ struct Config {
     std::string pathColorFile = "../data/color.txt";
     int codeLength = 30;
     bool communication = false;
-    int maxInteraction = 50;
+    int maxInteraction = 5000;
     std::vector<Param> params = std::vector<Param>(3);
 };
 

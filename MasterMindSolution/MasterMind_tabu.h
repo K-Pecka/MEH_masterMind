@@ -3,7 +3,6 @@
 
 #include "../meh_solution/MasterMind.h"
 #include <set>
-#include <list>
 
 using color_set =std::set<color_t>;
 std::ostream& operator<<(std::ostream& o, const color_set& result);

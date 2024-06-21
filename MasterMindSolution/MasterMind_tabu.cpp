@@ -26,15 +26,13 @@ color_t MasterMind_tabu::goal() {
                 neighbors.push_back(neighbor);
             }
         }
-        std::cout<<tabu;
-        if (neighbors.empty()) {
-            std::cout<<"empty"<<std::endl;
-            continue;
-        }
+        std::cout<<tabu.size()<<std::endl;
+        if (neighbors.empty())continue;
+
         auto neighbor = theBestNeighbor(neighbors);
         betterSolution(neighbor);
         addToTabu(neighbor);
-        if (tabu.size() > tabu_size) tabu.erase(tabu.begin());
+        if (tabu.size() > tabu_size) tabu.erase(tabu.end());
     }
     return getSolution();
 }
