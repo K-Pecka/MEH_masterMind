@@ -4,6 +4,7 @@
 #include "MasterMindSolution/MasterMind_random.h"
 #include "MasterMindSolution/MasterMind_BF.h"
 #include "MasterMindSolution/MasterMind_hill_climbing.h"
+#include "MasterMindSolution/MasterMind_tabu.h"
 
 int main(int argc, char* argv[]) {
 
@@ -15,7 +16,8 @@ int main(int argc, char* argv[]) {
     std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
             {"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
             {"solve_BF", [](const Config& cfg) { return std::make_unique<MasterMind_BF>(cfg); }},
-            {"solve_hill_climbing", [](const Config& cfg) { return std::make_unique<MasterMind_hill_climbing>(cfg); }}
+            {"solve_hill_climbing", [](const Config& cfg) { return std::make_unique<MasterMind_hill_climbing>(cfg); }},
+            {"solve_tabu", [](const Config& cfg) { return std::make_unique<MasterMind_tabu>(cfg); }}
     };
 
     Config config;

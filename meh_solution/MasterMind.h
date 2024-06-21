@@ -19,11 +19,11 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct Config {
-    std::string selected_solver = "solve_hill_climbing";
+    std::string selected_solver = "solve_tabu";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 15;
+    int codeLength = 30;
     bool communication = false;
-    int maxInteraction = 10000;
+    int maxInteraction = 50;
     std::vector<Param> params = std::vector<Param>(3);
 };
 
