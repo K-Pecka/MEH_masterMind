@@ -21,9 +21,9 @@ struct Guessed {
 struct Config {
     std::string selected_solver = "solve_hill_climbing";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 10;
-    bool communication = true;
-    int maxInteraction = 100;
+    int codeLength = 15;
+    bool communication = false;
+    int maxInteraction = 10000;
     std::vector<Param> params = std::vector<Param>(3);
 };
 

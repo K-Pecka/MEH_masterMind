@@ -11,4 +11,6 @@ add_executable(MEH_pjwstk main.cpp
         MasterMindSolution/MasterMind_hill_climbing.h
         MasterMindSolution/MasterMind_random.cpp
         MasterMindSolution/MasterMind_random.h
-        MasterMindSolution/MasterMind_random.h)
+        MasterMindSolution/MasterMind_random.h
+        MasterMindSolution/MasterMind_tabu.cpp
+        MasterMindSolution/MasterMind_tabu.h)
