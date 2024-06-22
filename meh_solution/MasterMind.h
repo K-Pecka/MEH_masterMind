@@ -21,7 +21,7 @@ struct Guessed {
 struct Config {
     std::string selected_solver = "solve_annealing";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 5;
+    int codeLength = 50;
     bool communication = false;
     int maxInteraction = 5000;
     std::vector<Param> params = std::vector<Param>(3);

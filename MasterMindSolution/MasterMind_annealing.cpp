@@ -10,12 +10,14 @@ color_t MasterMind_annealing::goal() {
     int counter = config.maxInteraction;
     for (int i=0;i<counter;i++) {
         auto neighbor = generateRandomNeighbourNorm(currentSolution);
-        std::cout<<neighbor;
-        if (checkColor(currentSolution)<checkColor(neighbor)) {
+        //std::cout<<neighbor;
+        if (checkColor(currentSolution)<=checkColor(neighbor)) {
             currentSolution = neighbor;
             betterSolution(neighbor);
         }else{
-            acceptSolution(neighbor,currentSolution,i);
+            if(acceptSolution(neighbor,currentSolution,i)){
+                currentSolution = neighbor;
+            }
         }
 
         if (checkColor(currentSolution) == config.codeLength) {
@@ -26,9 +28,6 @@ color_t MasterMind_annealing::goal() {
 }
 
 bool MasterMind_annealing::acceptSolution(color_t& neighbor,color_t& current,int& iterator) {
-    //std::cout<<exp((abs(checkColor(neighbor) - checkColor(current)) / double(1.0/(iterator+1))))<<std::endl;
-    //std::cout<<double(abs(checkColor(neighbor) - checkColor(current)))<<" "<< double(1000*std::pow(0.99,(double )iterator))<<std::endl;
-
     return randomFloat(0.0,1.0) < exp((abs(checkColor(neighbor) - checkColor(current)) / double(1000*std::pow(0.99,(double )iterator))));
 }
 
