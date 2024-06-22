@@ -28,7 +28,13 @@ int MasterMind::randomInt(int min, int max){
     uniform_int_distribution<int> dis(min, max);
     return dis(gen);
 }
-
+double MasterMind::randomFloat(double min, double max){
+    using namespace std;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_real_distribution<double> dis(min, max);
+    return dis(gen);
+}
 void MasterMind::init() {
     try {
         possibleColors.colors.clear();

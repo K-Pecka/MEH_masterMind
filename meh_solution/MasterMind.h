@@ -19,9 +19,9 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct Config {
-    std::string selected_solver = "solve_tabu";
+    std::string selected_solver = "solve_annealing";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 10;
+    int codeLength = 5;
     bool communication = false;
     int maxInteraction = 5000;
     std::vector<Param> params = std::vector<Param>(3);
@@ -29,13 +29,14 @@ struct Config {
 
 std::ostream& operator<<(std::ostream&, const color_t&);
 std::ostream& operator<<(std::ostream& o, const std::vector<bool>& result);
-class MasterMind {
+class MasterMind{
 public:
     MasterMind() = default;
     explicit MasterMind(Config configGame) : config(std::move(configGame)) {init();}
     virtual color_t goal() = 0;
 
     static int randomInt(int,int);
+    static double randomFloat(double,double);
     color_t loadFile(const std::string&) const;
     void init();
 

@@ -8,6 +8,9 @@ public:
     MasterMind_annealing() = default;
     explicit MasterMind_annealing(Config configGame) : MasterMind(std::move(configGame)) {}
     color_t goal() override;
+private:
+    bool acceptSolution(color_t&,color_t&,int&);
+    color_t generateRandomNeighbourNorm(color_t&);
 };
 
 

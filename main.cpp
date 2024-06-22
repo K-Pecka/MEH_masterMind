@@ -5,6 +5,7 @@
 #include "MasterMindSolution/MasterMind_BF.h"
 #include "MasterMindSolution/MasterMind_hillClimbing.h"
 #include "MasterMindSolution/MasterMind_tabu.h"
+#include "MasterMindSolution/MasterMind_annealing.h"
 
 int main(int argc, char* argv[]) {
 
@@ -18,7 +19,7 @@ int main(int argc, char* argv[]) {
             {"solve_BF", [](const Config& cfg) { return std::make_unique<MasterMind_BF>(cfg); }},
             {"solve_hillClimbing", [](const Config& cfg) { return std::make_unique<MasterMind_hillClimbing>(cfg); }},
             {"solve_tabu", [](const Config& cfg) { return std::make_unique<MasterMind_tabu>(cfg); }},
-            {"solve_tabu", [](const Config& cfg) { return std::make_unique<MasterMind_tabu>(cfg); }}
+            {"solve_annealing", [](const Config& cfg) { return std::make_unique<MasterMind_annealing>(cfg); }}
     };
 
     Config config;
