@@ -11,6 +11,8 @@ std::ostream& operator<<(std::ostream& o, const color_set& result){
     return o;
 }
 color_t MasterMind_tabu::goal() {
+    tabu.clear();
+    solutionHistory.clear();
     if (config.communication) {
         std::cout << "Solution found (Tabu):" << std::endl;
     }

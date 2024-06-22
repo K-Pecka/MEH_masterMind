@@ -70,7 +70,7 @@ build CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_BF.cpp.obj: CXX_CO
   TARGET_COMPILE_PDB = CMakeFiles\MEH_pjwstk.dir\
   TARGET_PDB = MEH_pjwstk.pdb
 
-build CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_hill_climbing.cpp.obj: CXX_COMPILER__MEH_pjwstk_unscanned_Debug C$:\Users\Kacper\Dev\MEH_pjwstk\MasterMindSolution\MasterMind_hill_climbing.cpp || cmake_object_order_depends_target_MEH_pjwstk
+build CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_hillClimbing.cpp.obj: CXX_COMPILER__MEH_pjwstk_unscanned_Debug C$:\Users\Kacper\Dev\MEH_pjwstk\MasterMindSolution\MasterMind_hillClimbing.cpp || cmake_object_order_depends_target_MEH_pjwstk
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++latest -MDd -Zi
   OBJECT_DIR = CMakeFiles\MEH_pjwstk.dir
   OBJECT_FILE_DIR = CMakeFiles\MEH_pjwstk.dir\MasterMindSolution
@@ -91,6 +91,13 @@ build CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_tabu.cpp.obj: CXX_
   TARGET_COMPILE_PDB = CMakeFiles\MEH_pjwstk.dir\
   TARGET_PDB = MEH_pjwstk.pdb
 
+build CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_annealing.cpp.obj: CXX_COMPILER__MEH_pjwstk_unscanned_Debug C$:\Users\Kacper\Dev\MEH_pjwstk\MasterMindSolution\MasterMind_annealing.cpp || cmake_object_order_depends_target_MEH_pjwstk
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++latest -MDd -Zi
+  OBJECT_DIR = CMakeFiles\MEH_pjwstk.dir
+  OBJECT_FILE_DIR = CMakeFiles\MEH_pjwstk.dir\MasterMindSolution
+  TARGET_COMPILE_PDB = CMakeFiles\MEH_pjwstk.dir\
+  TARGET_PDB = MEH_pjwstk.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MEH_pjwstk
@@ -99,7 +106,7 @@ build CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_tabu.cpp.obj: CXX_
 #############################################
 # Link the executable MEH_pjwstk.exe
 
-build MEH_pjwstk.exe: CXX_EXECUTABLE_LINKER__MEH_pjwstk_Debug CMakeFiles\MEH_pjwstk.dir\main.cpp.obj CMakeFiles\MEH_pjwstk.dir\meh_solution\MasterMind.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_BF.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_hill_climbing.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_random.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_tabu.cpp.obj
+build MEH_pjwstk.exe: CXX_EXECUTABLE_LINKER__MEH_pjwstk_Debug CMakeFiles\MEH_pjwstk.dir\main.cpp.obj CMakeFiles\MEH_pjwstk.dir\meh_solution\MasterMind.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_BF.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_hillClimbing.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_random.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_tabu.cpp.obj CMakeFiles\MEH_pjwstk.dir\MasterMindSolution\MasterMind_annealing.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
