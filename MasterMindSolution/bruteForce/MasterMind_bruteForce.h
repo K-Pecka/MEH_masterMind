@@ -2,9 +2,7 @@
 #define MEH_PJWSTK_MASTERMIND_BRUTEFORCE_H
 
 
-#include "../../meh_solution/MasterMind.h"
-
-
+#include "../../masterMind/MasterMind.h"
 class MasterMind_bruteForce : public MasterMind {
 public:
     MasterMind_bruteForce() = default;

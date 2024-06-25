@@ -17,23 +17,23 @@ color_t MasterMind_tabu::goal() {
         std::cout << "Solution found (Tabu):" << std::endl;
     }
     setSolution(generateRandomSolution());
-
+    auto neighbor = getSolution();
     addToTabu(getGuessSolution());
     int counter = config.maxInteraction;
 
     while (counter--) {
-        std::vector<color_t> neighbors = neighborsInTabu(generateNeighbor());
+        std::vector<color_t> neighbors = neighborsInTabu(generateNeighbor(neighbor));
 
         if (neighbors.empty()) {
             if (!solutionHistory.empty()) {
-                setSolution(solutionHistory.back());
+                neighbor=solutionHistory.back();
                 solutionHistory.pop_back();
                 continue;
             }
             break;
         }
 
-        auto neighbor = theBestNeighbor(neighbors);
+        neighbor = theBestNeighbor(neighbors);
         betterSolution(neighbor);
         addToTabu(neighbor);
         solutionHistory.push_back(neighbor);

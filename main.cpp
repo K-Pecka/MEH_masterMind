@@ -6,6 +6,8 @@
 #include "MasterMindSolution/hillClimbing/MasterMind_hillClimbing.h"
 #include "MasterMindSolution/tabu/MasterMind_tabu.h"
 #include "MasterMindSolution/annealing/MasterMind_annealing.h"
+#include "MasterMindSolution/genetic/MasterMind_genetic.h"
+
 void toLowerCase(std::string &str) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 }
@@ -24,7 +26,8 @@ int main(int argc, char* argv[]) {
             {"solve_bruteForce", [](const Config& cfg) { return std::make_unique<MasterMind_bruteForce>(cfg); }},
             {"solve_hillClimbing", [](const Config& cfg) { return std::make_unique<MasterMind_hillClimbing>(cfg); }},
             {"solve_tabu", [](const Config& cfg) { return std::make_unique<MasterMind_tabu>(cfg); }},
-            {"solve_annealing", [](const Config& cfg) { return std::make_unique<MasterMind_annealing>(cfg); }}
+            {"solve_annealing", [](const Config& cfg) { return std::make_unique<MasterMind_annealing>(cfg); }},
+            {"solve_genetic", [](const Config& cfg) { return std::make_unique<MasterMind_genetic>(cfg); }}
     };
 
     Config config;
@@ -45,6 +48,27 @@ int main(int argc, char* argv[]) {
 
                 } else {
                     std::cerr << "Unknown parameter: " << paramStr << std::endl;
+                }
+            }
+        }
+        if (args[i] == "-GA") {
+            size_t argIndex = 0;
+            while (i + 1 < args.size() && args[i + 1][0] != '-') {
+                std::string paramStr = args[++i];
+                toLowerCase(paramStr);
+
+                try {
+                    int value = std::stoi(paramStr);
+                    if (argIndex == 0) {
+                        config.GAConfig.eliteSize = value;
+                    } else if (argIndex == 1) {
+                        config.GAConfig.generation = value;
+                    } else if (argIndex == 2) {
+                        config.GAConfig.population = value;
+                    }
+                    argIndex++;
+                } catch (const std::invalid_argument& e) {
+                    std::cerr << "Invalid number: " << paramStr << std::endl;
                 }
             }
         }

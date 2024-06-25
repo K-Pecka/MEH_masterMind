@@ -4,7 +4,7 @@ project(MEH_pjwstk)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(MEH_pjwstk main.cpp
-        meh_solution/MasterMind.cpp
+        masterMind/MasterMind.cpp
         MasterMindSolution/bruteForce/MasterMind_bruteForce.cpp
         MasterMindSolution/hillClimbing/MasterMind_hillClimbing.cpp
         MasterMindSolution/random/MasterMind_random.cpp

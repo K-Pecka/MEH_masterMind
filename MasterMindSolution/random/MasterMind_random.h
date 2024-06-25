@@ -1,8 +1,7 @@
 #ifndef MEH_PJWSTK_MASTERMIND_RANDOM_H
 #define MEH_PJWSTK_MASTERMIND_RANDOM_H
 
-#include "../../meh_solution/MasterMind.h"
-
+#include "../../masterMind/MasterMind.h"
 class MasterMind_random : public MasterMind{
 public:
     MasterMind_random() = default;

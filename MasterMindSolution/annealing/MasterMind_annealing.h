@@ -1,7 +1,7 @@
 #ifndef MEH_PJWSTK_MASTERMIND_ANNEALING_H
 #define MEH_PJWSTK_MASTERMIND_ANNEALING_H
 
-#include "../../meh_solution/MasterMind.h"
+#include "../../masterMind/MasterMind.h"
 
 class MasterMind_annealing: public MasterMind{
 public:

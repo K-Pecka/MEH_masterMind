@@ -1,7 +1,7 @@
 #ifndef MEH_PJWSTK_MASTERMIND_HILLCLIMBING_H
 #define MEH_PJWSTK_MASTERMIND_HILLCLIMBING_H
 
-#include "../../meh_solution/MasterMind.h"
+#include "../../masterMind/MasterMind.h"
 class MasterMind_hillClimbing: public MasterMind {
 public:
     MasterMind_hillClimbing() = default;

@@ -1,7 +1,7 @@
 #ifndef MEH_PJWSTK_MASTERMIND_TABU_H
 #define MEH_PJWSTK_MASTERMIND_TABU_H
 
-#include "../../meh_solution/MasterMind.h"
+#include "../../masterMind/MasterMind.h"
 #include <set>
 #include <deque>
 
