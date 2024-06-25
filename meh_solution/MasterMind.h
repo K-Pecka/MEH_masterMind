@@ -13,15 +13,17 @@
 
 using color_t = std::vector<std::string>;
 enum Param{
-    RANDOM,DETERMINISTIC
+    RANDOM,DETERMINISTIC,SWAP, SINGLE_POINT,
+    UNIFORM,MAX_GENERATIONS,
+    FITNESS
 };
 struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct Config {
-    std::string selected_solver = "solve_annealing";
+    std::string selected_solver = "solve_hillClimbing";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 50;
+    int codeLength = 30;
     bool communication = false;
     int maxInteraction = 5000;
     std::vector<Param> params = std::vector<Param>(3);
@@ -62,6 +64,7 @@ public:
     std::vector<color_t> generateNeighbor();
     color_t theBestNeighbor(std::vector<color_t>&);
     static color_t randomNeighbor(std::vector<color_t>&);
+    bool isInParams(Param);
 protected:
     Config config;
     std::vector<std::pair<std::string, bool>> solution;

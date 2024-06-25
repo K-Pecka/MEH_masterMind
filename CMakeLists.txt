@@ -17,4 +17,7 @@ add_executable(MEH_pjwstk main.cpp
         MasterMindSolution/MasterMind_annealing.cpp
         MasterMindSolution/MasterMind_annealing.h
         MasterMindSolution/MasterMind_annealing.cpp
+        MasterMindSolution/MasterMind_genetic.cpp
+        MasterMindSolution/MasterMind_genetic.h
+        MasterMindSolution/MasterMind_genetic.h
 )

@@ -177,3 +177,7 @@ void MasterMind::setSolution(color_t guess) {
         solution[i] = {guess[i], guess[i] == correctSolution[i]};
     }
 }
+bool MasterMind::isInParams(Param p)
+{
+    return std::find(config.params.begin(), config.params.end(), p) != config.params.end();
+}
