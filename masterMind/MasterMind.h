@@ -29,6 +29,7 @@ struct GA{
 struct Config {
     std::string selected_solver = "solve_annealing";
     std::string pathColorFile = "../data/color.txt";
+    std::string pathSolutionFile = "";//../data/solution.txt
     int codeLength = 30;
     bool communication = false;
     int maxInteraction = 1000;
@@ -48,6 +49,7 @@ public:
     static double randomFloat(double,double);
     static std::mt19937 random();
     color_t loadFile(const std::string&) const;
+    color_t setLoadSolution(const std::string&);
     void init();
 
     void printSolve();

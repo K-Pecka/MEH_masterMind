@@ -8,8 +8,6 @@
 #include "MasterMindSolution/annealing/MasterMind_annealing.h"
 
 /*#include "MasterMindSolution/random/MasterMind_random.h"
-
-
 #include "MasterMindSolution/genetic/MasterMind_genetic.h"*/
 
 void toLowerCase(std::string &str) {
@@ -84,7 +82,7 @@ int main(int argc, char* argv[]) {
         {
             config.maxInteraction = std::stoi(args[i+1]);
         }
-        if(args[i] == "-path" || args[i] == "-p")
+        if(args[i] == "-colorPath" || args[i] == "-p")
         {
             config.pathColorFile = args[i+1];
         }
@@ -92,6 +90,10 @@ int main(int argc, char* argv[]) {
         {
             std::string comm = args[i+1];
             config.communication = (comm == "true" || comm == "1");
+        }
+        if(args[i] == "-solutionPath" || args[i] == "-s")
+        {
+            config.pathSolutionFile = args[i+1];
         }
     }
     auto solver_it = solvers.find(config.selected_solver);

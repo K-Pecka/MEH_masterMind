@@ -1,7 +1,13 @@
 deterministic
-F G F D D D C C E H 
-F F F D D D C C E H 
-1 0 1 1 1 1 1 1 1 1 
-9/10
-90%
-9047756 microseconds
+A A A A A 
+A A A A A 
+1 1 1 1 1 
+5/5
+100%
+9655 microseconds
+H G E D C C C E F C 
+H G E D C C C E F C 
+1 1 1 1 1 1 1 1 1 1 
+10/10
+100%
+17746 microseconds

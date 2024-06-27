@@ -57,9 +57,8 @@ color_t MasterMind::generateRandomSolution() {
 
 void MasterMind::init() {
     try {
-        possibleColors.colors.clear();
         possibleColors.colors=loadFile(config.pathColorFile);
-        correctSolution = generateRandomSolution();
+        correctSolution =(!config.pathSolutionFile.empty())?setLoadSolution(config.pathSolutionFile):generateRandomSolution();
         TheBestSolution = std::vector<std::pair<std::string, bool>>(config.codeLength, {"", false});
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
@@ -70,6 +69,11 @@ void MasterMind::init() {
 color_t MasterMind::getGuessSolution() {
     if(config.communication)std::cout << "Solution: ";
     return correctSolution;
+}
+color_t MasterMind::setLoadSolution(const std::string& path){
+    auto loadSolution = loadFile(path);
+    config.codeLength = (int)loadSolution.size();
+    return loadFile(path);
 }
 color_t MasterMind::loadFile(const std::string& path) const {
     std::ifstream file(path);
