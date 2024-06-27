@@ -32,7 +32,7 @@ struct GA{
     int eliteSize = 5;
 };
 struct Config {
-    std::string selected_solver = "solve_hillClimbing";
+    std::string selected_solver = "solve_random";
     std::string pathColorFile = "../data/color.txt";
     std::string pathSolutionFile = "../data/solution.txt";//    ../data/solution.txt
     int codeLength = 30;
