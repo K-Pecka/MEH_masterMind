@@ -7,16 +7,16 @@ std::ostream& operator<<(std::ostream& o, const color_t& g) {
     o << std::endl;
     return o;
 }
-std::ostream& operator<<(std::ostream& o, const std::vector<std::pair<std::string, bool>>& g) {
+std::ostream& operator<<(std::ostream& o, const vector& g) {
     for (const auto& pair : g) {
         o <<"{"<< pair.first << ","<<pair.second<<"}";
     }
     o << std::endl;
     return o;
 }
-std::ostream& operator<<(std::ostream& o, const std::vector<bool>& result) {
-    for(bool position : result) {
-        o << (position ? "1" : "0")<<" ";
+std::ostream& operator<<(std::ostream& o, const std::vector<tinyInt>& result) {
+    for(tinyInt position : result) {
+        o << position<<" ";
     }
     o << std::endl;
     return o;
@@ -24,10 +24,9 @@ std::ostream& operator<<(std::ostream& o, const std::vector<bool>& result) {
 
 std::mt19937 MasterMind::random() {
     std::random_device rd;
-    std::mt19937 rdgen(rd());
-    return rdgen;
+    std::mt19937 random(rd());
+    return random;
 }
-
 int MasterMind::randomInt(int min, int max){
     using namespace std;
     auto gen = random();
@@ -44,6 +43,8 @@ int MasterMind::randomColor() const
 {
     return randomInt(0, (int)possibleColors.colors.size() - 1);
 }
+
+
 color_t MasterMind::generateRandomSolution() {
     color_t randomSolution;
     for (int i = 0; i < config.codeLength; ++i) {
@@ -59,7 +60,8 @@ void MasterMind::init() {
     try {
         possibleColors.colors=loadFile(config.pathColorFile);
         correctSolution =(!config.pathSolutionFile.empty())?setLoadSolution(config.pathSolutionFile):generateRandomSolution();
-        TheBestSolution = std::vector<std::pair<std::string, bool>>(config.codeLength, {"", false});
+        theBestSolution = vector(config.codeLength, {"", 0});
+        colorInSolution = isInSolution(correctSolution);
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
         exit(-1);
@@ -93,8 +95,8 @@ color_t MasterMind::loadFile(const std::string& path) const {
 
 
 bool MasterMind::betterSolution(const color_t &guess) {
-    if(config.communication)std::cout << goal(guess) << ">" << goal(TheBestSolution) << std::endl;
-    if (goal(guess) > goal(TheBestSolution)) {
+    if(config.communication)std::cout << goal(guess) << ">" << goal(theBestSolution) << std::endl;
+    if (goal(guess) > goal(theBestSolution)) {
         setSolution(guess);
         return true;
     }
@@ -103,6 +105,10 @@ bool MasterMind::betterSolution(const color_t &guess) {
 int MasterMind::goal(const color_t& guess) {
     int correctColors = 0;
     for (size_t i = 0; i < guess.size(); ++i) {
+        if(colorInSolution.find(guess[i]) != colorInSolution.end())
+        {
+            correctColors++;
+        }
         if (guess[i] == correctSolution[i]) {
             correctColors++;
         }
@@ -110,18 +116,18 @@ int MasterMind::goal(const color_t& guess) {
     return correctColors;
 }
 
-int MasterMind::goal(std::vector<std::pair<std::string, bool>>& solution) {
+int MasterMind::goal(vector& solution) {
     int correctColors = 0;
     for (auto & pair : solution) {
         if (pair.second) {
-            correctColors++;
+            correctColors+=pair.second;
         }
     }
     return correctColors;
 }
 std::vector<color_t> MasterMind::generateNeighbor() {
     std::vector<color_t> result;
-    for (size_t i = 0; i < TheBestSolution.size(); ++i) {
+    for (size_t i = 0; i < theBestSolution.size(); ++i) {
 
             color_t modified = getTheBestSolution();
             modified[i] = possibleColors.colors[randomColor()];
@@ -157,27 +163,29 @@ color_t MasterMind::randomNeighbor(std::vector<color_t> & neighbors) {
     }
     return neighbors[randomInt(0,(int)neighbors.size()-1)];
 }
-std::vector<bool> MasterMind::getCorrectPosition(color_t colorCorrect, color_t colorGuess) const {
-    std::vector<bool> correct(config.codeLength, false);
-    for (size_t i = 0; i < colorCorrect.size(); ++i) {
-        correct[i] = (colorCorrect[i] == colorGuess[i]);
+std::vector<tinyInt> MasterMind::getCorrectPosition(color_t colorCorrect, color_t colorGuess) const {
+    std::vector<tinyInt> correct(config.codeLength, 0);
+    auto color = isInSolution(colorCorrect);
+    for (size_t i = 0; i < colorGuess.size(); ++i) {
+        tinyInt correctPosition = 0;
+        if(color.find(colorGuess[i]) != color.end())correctPosition++;
+        if (colorCorrect[i] == colorGuess[i]) correctPosition++;
+        correct[i]=correctPosition;
     }
     return correct;
 }
 
-void MasterMind::showCorrectPosition(const std::vector<bool>& positions) const {
-    float count=0;
-    for(bool position : positions) {
-        if(position)count++;
-    }
+void MasterMind::showCorrectPosition(const std::vector<tinyInt>& positions) const {
+    auto max = config.codeLength * weight;
+    auto count=std::accumulate(positions.begin(), positions.end(), 0.0);
     std::cout<<positions;
-    std::cout<<count<<"/"<<config.codeLength<<std::endl;
-    std::cout<<(count/float(config.codeLength))*100<<"%"<<std::endl;
+    std::cout<<count<<"/"<<max<<std::endl;
+    std::cout<<(count/max)*100<<"%"<<std::endl;
 }
 
 color_t MasterMind::getTheBestSolution() {
    color_t solutionL;
-   for(const auto& solutionColor: TheBestSolution)
+   for(const auto& solutionColor: theBestSolution)
    {
        solutionL.push_back(solutionColor.first);
    }
@@ -198,8 +206,17 @@ void MasterMind::printSolve() {
 }
 
 void MasterMind::setSolution(color_t guess) {
+    auto color = isInSolution(guess);
     for (size_t i = 0; i < guess.size(); ++i) {
-        TheBestSolution[i] = {guess[i], guess[i] == correctSolution[i]};
+        auto correctColors = 0;
+        if(color.find(guess[i]) != color.end())
+        {
+            correctColors++;
+        }
+        if (guess[i] == correctSolution[i]) {
+            correctColors++;
+        }
+        theBestSolution[i] = {guess[i], correctColors};
     }
 }
 bool MasterMind::isInParams(Param p)
@@ -208,5 +225,13 @@ bool MasterMind::isInParams(Param p)
 }
 
 bool MasterMind::fullCompatibility(color_t& correct) {
-    return goal(correct) == config.codeLength;
+    return goal(correct) == config.codeLength * weight;
+}
+
+std::set<std::string> MasterMind::isInSolution(const color_t& solution) {
+    std::set<std::string> result;
+    for (const auto& color : solution) {
+        result.insert(color);
+    }
+    return result;
 }

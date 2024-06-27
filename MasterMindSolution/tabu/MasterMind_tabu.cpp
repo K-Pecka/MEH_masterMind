@@ -23,7 +23,6 @@ color_t MasterMind_tabu::solve() {
         std::vector<color_t> neighbors = neighborsInTabu(generateNeighbor(neighbor));
         if (neighbors.empty()) {
             if (!solutionHistory.empty()) {
-                continue;
                 neighbor=solutionHistory.back();
                 solutionHistory.pop_back();
                 continue;
