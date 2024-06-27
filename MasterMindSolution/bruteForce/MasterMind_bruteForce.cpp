@@ -1,35 +1,32 @@
 #include "MasterMind_bruteForce.h"
 
-color_t MasterMind_bruteForce::goal()  {
-    if(config.communication) std::cout << "Solution found (BF): ";
-    return bruteForceSolution();
+color_t MasterMind_bruteForce::solve()  {
+    if (config.communication) std::cout << "Solution found (BF): ";
+    color_t currentCombination(config.codeLength,possibleColors.colors[0]);
+    int counter = config.maxInteraction;
+
+    generateCombinations(0, currentCombination, counter);
+
+    return getTheBestSolution();
 }
-void MasterMind_bruteForce::generateAllCombinations(int codeLength, std::vector<color_t>& combinations, color_t& currentCombination, int counter) {
-    if(counter==0)
-    {
+bool MasterMind_bruteForce::generateCombinations(int position, color_t& currentCombination, int& counter) {
+    if (counter <= 0) {
+
         throw std::runtime_error("Too long time");
     }
-    if (currentCombination.size() == codeLength) {
-        combinations.push_back(currentCombination);
-        return;
+    if (position == currentCombination.size()) {
+        --counter;
+        if (currentCombination == correctSolution) {
+            setSolution(currentCombination);
+            return true;
+        }
+        return false;
     }
     for (const auto& color : possibleColors.colors) {
-        currentCombination.push_back(color);
-        generateAllCombinations(codeLength, combinations, currentCombination,counter--);
-        currentCombination.pop_back();
-    }
-}
-
-color_t MasterMind_bruteForce::bruteForceSolution() {
-    std::vector<color_t> combinations;
-    color_t currentCombination;
-    int counter = config.maxInteraction;
-    generateAllCombinations(config.codeLength, combinations, currentCombination,counter);
-
-    for (const auto& combination : combinations) {
-        if (combination == correctSolution) {
-            return combination;
+        currentCombination[position] = color;
+        if (generateCombinations(position + 1, currentCombination, counter)) {
+            return true;
         }
     }
-    return {};
+    return false;
 }

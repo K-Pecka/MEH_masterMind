@@ -7,9 +7,8 @@ class MasterMind_bruteForce : public MasterMind {
 public:
     MasterMind_bruteForce() = default;
     explicit MasterMind_bruteForce(Config configGame) : MasterMind(std::move(configGame)) {}
-    color_t goal() override;
-    color_t bruteForceSolution() ;
-    void generateAllCombinations(int, std::vector<color_t>&, color_t&,int);
+    color_t solve() override;
+    bool generateCombinations(int, color_t&, int&);
 };
 
 #endif //MEH_PJWSTK_MASTERMIND_BRUTEFORCE_H

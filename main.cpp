@@ -1,12 +1,16 @@
 #include <iostream>
 #include <unordered_map>
 #include <functional>
-#include "MasterMindSolution/random/MasterMind_random.h"
+
 #include "MasterMindSolution/bruteForce/MasterMind_bruteForce.h"
 #include "MasterMindSolution/hillClimbing/MasterMind_hillClimbing.h"
 #include "MasterMindSolution/tabu/MasterMind_tabu.h"
 #include "MasterMindSolution/annealing/MasterMind_annealing.h"
-#include "MasterMindSolution/genetic/MasterMind_genetic.h"
+
+/*#include "MasterMindSolution/random/MasterMind_random.h"
+
+
+#include "MasterMindSolution/genetic/MasterMind_genetic.h"*/
 
 void toLowerCase(std::string &str) {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
@@ -22,12 +26,12 @@ int main(int argc, char* argv[]) {
             {"max_generation",Param::MAX_GENERATIONS}
     };
     std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
-            {"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
+            //{"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
             {"solve_bruteForce", [](const Config& cfg) { return std::make_unique<MasterMind_bruteForce>(cfg); }},
             {"solve_hillClimbing", [](const Config& cfg) { return std::make_unique<MasterMind_hillClimbing>(cfg); }},
             {"solve_tabu", [](const Config& cfg) { return std::make_unique<MasterMind_tabu>(cfg); }},
             {"solve_annealing", [](const Config& cfg) { return std::make_unique<MasterMind_annealing>(cfg); }},
-            {"solve_genetic", [](const Config& cfg) { return std::make_unique<MasterMind_genetic>(cfg); }}
+            //{"solve_genetic", [](const Config& cfg) { return std::make_unique<MasterMind_genetic>(cfg); }}
     };
 
     Config config;
@@ -97,6 +101,7 @@ int main(int argc, char* argv[]) {
             //for(int i=0;i<10;i++)
                 solver->printSolve();
         }catch (const std::runtime_error& e) {
+            std::cout<<-1<<std::endl;
             std::cerr << e.what() << std::endl;
             exit(-1);
         }catch (const std::invalid_argument& e) {

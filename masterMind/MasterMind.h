@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <utility>
+#include <functional>
 
 using color_t = std::vector<std::string>;
 enum Param{
@@ -21,14 +22,14 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct GA{
-    int generation = 5;
+    int generation = 30;
     int population = 100;
     int eliteSize = 5;
 };
 struct Config {
-    std::string selected_solver = "solve_genetic";
+    std::string selected_solver = "solve_annealing";
     std::string pathColorFile = "../data/color.txt";
-    int codeLength = 10;
+    int codeLength = 30;
     bool communication = false;
     int maxInteraction = 1000;
     GA GAConfig = {};
@@ -41,10 +42,11 @@ class MasterMind{
 public:
     MasterMind() = default;
     explicit MasterMind(Config configGame) : config(std::move(configGame)) {init();}
-    virtual color_t goal() = 0;
+    virtual color_t solve() = 0;
 
     static int randomInt(int,int);
     static double randomFloat(double,double);
+    static std::mt19937 random();
     color_t loadFile(const std::string&) const;
     void init();
 
@@ -55,13 +57,13 @@ public:
     color_t generateRandomSolution();
     color_t getGuessSolution();
 
-    color_t getSolution();
+    color_t getTheBestSolution();
     bool betterSolution(const color_t &guess);
-
+    bool fullCompatibility(color_t&);
     int randomColor() const;
 
-    int checkColor(const color_t&);
-    static int checkColor(std::vector<std::pair<std::string, bool>>&);
+    int goal(const color_t &guess);
+    static int goal(std::vector<std::pair<std::string, bool>> &solution);
 
     std::vector<bool> getCorrectPosition(color_t,color_t) const;
     void showCorrectPosition(const std::vector<bool>&) const;
@@ -73,7 +75,7 @@ public:
     bool isInParams(Param);
 protected:
     Config config;
-    std::vector<std::pair<std::string, bool>> solution;
+    std::vector<std::pair<std::string, bool>> TheBestSolution;
     Guessed possibleColors;
     color_t correctSolution;
 };

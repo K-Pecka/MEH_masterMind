@@ -1,26 +1,7 @@
-random
-max_generation
-E D C F D B H G D H 
-20
-150
-5
-20
-E H C F A F H G B H 
-1 0 1 1 0 0 1 1 0 1 
-6/10
-60%
-1305248 microseconds
-
-random
-max_generation
-G C C H F C B B D H 
-20
-150
-5
-
-20
-G C C E F C B B D F 
-1 1 1 0 1 1 1 1 1 0 
-8/10
-80%
-1447169 microseconds
+deterministic
+F G F D D D C C E H 
+F F F D D D C C E H 
+1 0 1 1 1 1 1 1 1 1 
+9/10
+90%
+9047756 microseconds

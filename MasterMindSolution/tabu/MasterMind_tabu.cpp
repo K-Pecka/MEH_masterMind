@@ -6,26 +6,24 @@ std::ostream& operator<<(std::ostream& o, const color_set& result){
         for (const auto& color : set_of_colors) {
             o << color << " ";
         }
-        o << "}" << std::endl;
+        o << "}" <<std::endl;
     }
     return o;
 }
-color_t MasterMind_tabu::goal() {
+color_t MasterMind_tabu::solve() {
     tabu.clear();
     solutionHistory.clear();
-    if (config.communication) {
-        std::cout << "Solution found (Tabu):" << std::endl;
-    }
+    if (config.communication) std::cout << "Solution found (Tabu):" << std::endl;
     setSolution(generateRandomSolution());
-    auto neighbor = getSolution();
-    addToTabu(getGuessSolution());
+    auto neighbor = getTheBestSolution();
+    addToTabu(getTheBestSolution());
     int counter = config.maxInteraction;
 
     while (counter--) {
         std::vector<color_t> neighbors = neighborsInTabu(generateNeighbor(neighbor));
-
         if (neighbors.empty()) {
             if (!solutionHistory.empty()) {
+                continue;
                 neighbor=solutionHistory.back();
                 solutionHistory.pop_back();
                 continue;
@@ -35,10 +33,11 @@ color_t MasterMind_tabu::goal() {
 
         neighbor = theBestNeighbor(neighbors);
         betterSolution(neighbor);
+        if(fullCompatibility(neighbor))break;
         addToTabu(neighbor);
         solutionHistory.push_back(neighbor);
     }
-    return getSolution();
+    return getTheBestSolution();
 }
 std::vector<color_t> MasterMind_tabu::neighborsInTabu(const std::vector<color_t>& neighbors){
     std::vector<color_t> neighborsInTabu;

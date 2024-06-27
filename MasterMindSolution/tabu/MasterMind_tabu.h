@@ -15,7 +15,7 @@ public:
     void addToTabu(const color_t&);
     bool isInTabu(const color_t&);
     std::vector<color_t> neighborsInTabu(const std::vector<color_t>&);
-    color_t goal() override;
+    color_t solve() override;
 private:
     color_set tabu;
     std::deque<color_t> solutionHistory;

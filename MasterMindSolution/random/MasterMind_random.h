@@ -6,7 +6,7 @@ class MasterMind_random : public MasterMind{
 public:
     MasterMind_random() = default;
     explicit MasterMind_random(Config configGame) : MasterMind(std::move(configGame)) {}
-    color_t goal() override;
+    color_t solve() override;
 };
 
 

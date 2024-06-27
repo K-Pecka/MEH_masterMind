@@ -1,7 +1,7 @@
 #include "MasterMind_genetic.h"
 #include <functional>
 
-color_t MasterMind_genetic::goal() {
+color_t MasterMind_genetic::solve() {
 
     std::cout<<config.GAConfig.generation<<std::endl;
     std::cout<<config.GAConfig.population<<std::endl;
@@ -54,7 +54,7 @@ color_t MasterMind_genetic::goal() {
         generation++;
     }
     std::cout<<generation<<std::endl;
-    return getSolution();
+    return getTheBestSolution();
 }
 
 std::vector<color_t> MasterMind_genetic::initializePopulation(int populationSize) {
@@ -118,13 +118,13 @@ bool MasterMind_genetic::terminationConditionGenerations() {
 }
 
 bool MasterMind_genetic::terminationConditionFitness() {
-    return checkColor(getSolution()) == config.codeLength;
+    return goal(getTheBestSolution()) == config.codeLength;
 }
 
 std::vector<color_t> MasterMind_genetic::selectElites(const std::vector<color_t>& population, int eliteSize) {
     std::vector<color_t> elites(population);
     std::sort(elites.begin(), elites.end(), [this](const color_t& a, const color_t& b) {
-        return checkColor(a) > checkColor(b);
+        return goal(a) > goal(b);
     });
     elites.resize(eliteSize);
     return elites;
