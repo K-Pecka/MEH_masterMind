@@ -18,9 +18,10 @@ int main(int argc, char* argv[]) {
     std::unordered_map<std::string,Param> params ={
             {"random",Param::RANDOM},
             {"deterministic",Param::DETERMINISTIC},
+
             {"swap",Param::SWAP},
-            {"uniform",Param::UNIFORM},
-            {"max_generation",Param::MAX_GENERATIONS}
+            {"double_point",Param::DOUBLE_POINT},
+            {"fitness",Param::FITNESS}
     };
     std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
             {"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
@@ -43,7 +44,6 @@ int main(int argc, char* argv[]) {
             while (i + 1 < args.size() && args[i + 1][0] != '-') {
                 std::string paramStr = args[++i];
                 toLowerCase(paramStr);
-                std::cout<<paramStr<<std::endl;
                 if (params.count(paramStr)) {
                     config.params.push_back(params[paramStr]);
 
@@ -61,11 +61,15 @@ int main(int argc, char* argv[]) {
                 try {
                     int value = std::stoi(paramStr);
                     if (argIndex == 0) {
-                        config.GAConfig.eliteSize = value;
-                    } else if (argIndex == 1) {
                         config.GAConfig.generation = value;
-                    } else if (argIndex == 2) {
+                    } else if (argIndex == 1) {
                         config.GAConfig.population = value;
+                    } else if (argIndex == 2) {
+                        config.GAConfig.eliteSize = value;
+                    }else if (argIndex == 3) {
+                        config.GAConfig.crossoverProb = value;
+                    }else if (argIndex == 4) {
+                        config.GAConfig.mutationProb = value;
                     }
                     argIndex++;
                 } catch (const std::invalid_argument& e) {

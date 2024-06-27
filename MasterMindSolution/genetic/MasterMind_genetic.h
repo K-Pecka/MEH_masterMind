@@ -9,15 +9,23 @@ public:
     color_t solve() override;
 private:
     int generation=0;
+    std::vector<color_t> population;
+    std::vector<color_t> elites;
     std::vector<color_t> initializePopulation(int populationSize);
-    color_t selectParent(const std::vector<color_t>& population);
-    color_t crossoverSinglePoint(const color_t& parent1, const color_t& parent2);
-    color_t crossoverDoublePoint(const color_t& parent1, const color_t& parent2);
-    void mutateSwap(color_t& individual);
-    void mutateRandom(color_t& individual);
+    std::vector<int> fitnesses();
+    static std::vector<int> selectParent(const std::vector<int>& fit);
+    auto crossoverFunction();
+    auto mutateFunction();
+    auto terminationConditionFunction();
+    std::vector<color_t> crossoverSinglePoint(const color_t& parent1, const color_t& parent2);
+    std::vector<color_t> crossoverDoublePoint(const color_t& parent1, const color_t& parent2);
+    std::vector<color_t> mutateSwap(std::vector<color_t>& individual);
+    std::vector<color_t> mutateRandom(std::vector<color_t>& individual);
     bool terminationConditionGenerations();
     bool terminationConditionFitness();
-    std::vector<color_t> selectElites(const std::vector<color_t>& population, int eliteSize);
+    std::vector<color_t> selectWithOutElites(int eliteSize);
+
+    std::vector<color_t> crossoverParents(std::vector<int> vector1, auto crossover);
 };
 
 

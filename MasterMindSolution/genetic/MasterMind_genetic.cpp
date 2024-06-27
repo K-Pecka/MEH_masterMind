@@ -1,131 +1,191 @@
 #include "MasterMind_genetic.h"
-#include <functional>
+
+auto MasterMind_genetic::crossoverFunction(){
+    return [&](const color_t& p1, const color_t& p2) ->std::vector<color_t> {
+        if (isInParams(Param::DOUBLE_POINT)) {
+            return crossoverDoublePoint(p1, p2);
+        } else {
+            return crossoverSinglePoint(p1, p2);
+        }
+    };
+}
+auto MasterMind_genetic::mutateFunction(){
+    return [&](std::vector<color_t>& newPopulation) -> std::vector<color_t> {
+        if (isInParams(Param::SWAP)) {
+            return mutateSwap(newPopulation);
+        } else {
+            return mutateRandom(newPopulation);
+        }
+    };
+}
+auto MasterMind_genetic::terminationConditionFunction(){
+    return [&]() -> bool {
+        if (isInParams(Param::FITNESS)) {
+            return terminationConditionFitness();
+        } else {
+            return terminationConditionGenerations();
+        }
+    };
+}
 
 color_t MasterMind_genetic::solve() {
-
-    std::cout<<config.GAConfig.generation<<std::endl;
-    std::cout<<config.GAConfig.population<<std::endl;
-    std::cout<<config.GAConfig.eliteSize<<std::endl;
-
     int populationSize = config.GAConfig.population;
     int eliteSize = config.GAConfig.eliteSize;
 
-    auto crossover =[&](const color_t& p1, const color_t& p2) ->color_t {
-                if (isInParams(Param::DOUBLE_POINT)) {
-                    return crossoverDoublePoint(p1, p2);
-                } else {
-                    return crossoverSinglePoint(p1, p2);
-                }
-    };
-    auto mutate = [&](color_t& ind) -> void {
-        if (isInParams(Param::SWAP)) {
-            mutateSwap(ind);
-        } else {
-            mutateRandom(ind);
-        }
-    };
-    auto terminationCondition = [&]() -> bool {
-        if (isInParams(Param::MAX_GENERATIONS)) {
-            return terminationConditionGenerations();
-        } else {
-            return terminationConditionFitness();
-        }
-    };
-    auto population = initializePopulation(populationSize);
-    setSolution(theBestNeighbor(population));
+    auto crossover = crossoverFunction();
+    auto mutate = mutateFunction();
+    auto terminationCondition = terminationConditionFunction();
+
+    population = initializePopulation(populationSize);
+    population = selectWithOutElites(eliteSize);
+
+    if(populationSize<eliteSize)eliteSize=0;
     generation = 0;
-
     while (!terminationCondition()) {
-        std::vector<color_t> newPopulation = selectElites(population, eliteSize);
-
-        while (newPopulation.size() < populationSize) {
-            color_t parent1 = selectParent(population);
-            color_t parent2 = selectParent(population);
-
-            color_t offspring = crossover(parent1, parent2);
-
-            mutate(offspring);
-
-            newPopulation.push_back(offspring);
-        }
-
-        population = newPopulation;
-        betterSolution(theBestNeighbor(population));
+        population = selectWithOutElites(eliteSize);
+        std::vector<color_t> offspring = crossoverParents(selectParent(fitnesses()),crossover);
+        population = mutate(offspring);
         generation++;
     }
-    std::cout<<generation<<std::endl;
+    betterSolution(theBestNeighbor(elites));
+    betterSolution(theBestNeighbor(population));
     return getTheBestSolution();
 }
 
 std::vector<color_t> MasterMind_genetic::initializePopulation(int populationSize) {
-    std::vector<color_t> population;
-    for (int i = 0; i < populationSize; ++i) {
-        population.push_back(generateRandomSolution());
-    }
+    for (int i = 0; i < populationSize; ++i) population.push_back(generateRandomSolution());
     return population;
 }
-
-color_t MasterMind_genetic::selectParent(const std::vector<color_t>& population) {
-    return population[randomInt(0, population.size() - 1)];
+std::vector<int> MasterMind_genetic::fitnesses() {
+    std::vector < int > fit;
+    for (auto & e: population) fit.push_back(goal(e));
+    return fit;
+}
+std::vector<int> MasterMind_genetic::selectParent(const std::vector<int>& fit) {
+    std::vector < int > result;
+    for (int i = 0; i < fit.size(); i++) {
+        int idx1 = randomInt(0,(int)fit.size() -1);
+        int idx2 = randomInt(0,(int)fit.size() -1);
+        if (fit.at(idx1) > fit.at(idx2)) result.push_back(idx1);
+        else result.push_back(idx2);
+    }
+    return result;
 }
 
 
-color_t MasterMind_genetic::crossoverSinglePoint(const color_t& parent1, const color_t& parent2) {
+std::vector<color_t> MasterMind_genetic::crossoverSinglePoint(const color_t& parent1, const color_t& parent2) {
+    std::vector<color_t> children(2, color_t(config.codeLength));
     int crossoverPoint = randomInt(0, config.codeLength - 1);
-    color_t offspring = parent1;
-    for (int i = crossoverPoint; i < config.codeLength; ++i) {
-        offspring[i] = parent2[i];
-    }
-    return offspring;
-}
 
-color_t MasterMind_genetic::crossoverDoublePoint(const color_t& parent1, const color_t& parent2) {
-
-    size_t size = parent1.size();
-    int point1 = randomInt(0, (int)size - 1);
-    int point2 = randomInt(0, (int)size - 1);
-
-    if (point1 > point2) {
-        std::swap(point1, point2);
-    }
-
-    color_t offspring(size);
-
-    for (int i = 0; i < size; ++i) {
-        if (i >= point1 && i <= point2) {
-            offspring[i] = parent2[i];
+    for (int i = 0; i < config.codeLength; ++i) {
+        if (i < crossoverPoint) {
+            children[0][i] = parent1[i];
+            children[1][i] = parent2[i];
         } else {
-            offspring[i] = parent1[i];
+            children[0][i] = parent2[i];
+            children[1][i] = parent1[i];
         }
     }
 
-    return offspring;
+    return children;
 }
 
-void MasterMind_genetic::mutateSwap(color_t& individual) {
-    int index1 = randomInt(0, config.codeLength - 1);
-    int index2 = randomInt(0, config.codeLength - 1);
-    std::swap(individual[index1], individual[index2]);
+std::vector<color_t> MasterMind_genetic::crossoverDoublePoint(const color_t& parent1, const color_t& parent2) {
+    std::vector<color_t> children(2, color_t(config.codeLength));
+
+    int crossoverPoint1 = randomInt(0, config.codeLength - 1);
+    int crossoverPoint2 = randomInt(0, config.codeLength - 1);
+
+    if (crossoverPoint1 > crossoverPoint2) {
+        std::swap(crossoverPoint1, crossoverPoint2);
+    }
+
+    for (int i = 0; i < config.codeLength; ++i) {
+        if (i < crossoverPoint1 || i > crossoverPoint2) {
+            children[0][i] = parent1[i];
+            children[1][i] = parent2[i];
+        } else {
+            children[0][i] = parent2[i];
+            children[1][i] = parent1[i];
+        }
+    }
+
+    return children;
 }
 
-void MasterMind_genetic::mutateRandom(color_t& individual) {
-    int index = randomInt(0, config.codeLength - 1);
-    individual[index] = possibleColors.colors[randomColor()];
+std::vector<color_t> MasterMind_genetic::mutateSwap(std::vector<color_t>& newPopulation) {
+    for(auto &m:newPopulation)
+    {
+        for(auto &mu:m)
+        {
+            if (randomFloat(0.0, 1.0) > config.GAConfig.mutationProb)continue;
+            int index1 = randomInt(0, config.codeLength - 1);
+            int index2 = randomInt(0, config.codeLength - 1);
+            std::swap(m[index1], m[index2]);
+        }
+    }
+    return newPopulation;
+
 }
+
+std::vector<color_t> MasterMind_genetic::mutateRandom(std::vector<color_t>& newPopulation) {
+    for(auto &m:newPopulation) {
+        for(auto &mu:m) {
+            if (randomFloat(0.0, 1.0) > config.GAConfig.mutationProb)continue;
+            int index = randomInt(0, config.codeLength - 1);
+            m[index] = possibleColors.colors[randomColor()];
+        }
+    }
+    return newPopulation;
+}
+
 
 bool MasterMind_genetic::terminationConditionGenerations() {
         return generation >= config.GAConfig.generation;
 }
 
 bool MasterMind_genetic::terminationConditionFitness() {
-    return goal(getTheBestSolution()) == config.codeLength;
+    auto best = getTheBestSolution();
+    return fullCompatibility(best);
 }
 
-std::vector<color_t> MasterMind_genetic::selectElites(const std::vector<color_t>& population, int eliteSize) {
-    std::vector<color_t> elites(population);
-    std::sort(elites.begin(), elites.end(), [this](const color_t& a, const color_t& b) {
-        return goal(a) > goal(b);
+std::vector<color_t> MasterMind_genetic::selectWithOutElites(int eliteSize) {
+    std::vector<color_t> populationWithoutElite;
+    std::vector<color_t> combinedPopulation = population;
+    if(!elites.empty()){
+        combinedPopulation.insert(combinedPopulation.end(), elites.begin(), elites.end());
+        elites.clear();
+    }
+
+    std::sort(combinedPopulation.begin(), combinedPopulation.end(), [this](const color_t& a, const color_t& b) {
+        if (goal(a) == goal(a)) {
+            return betterSolutionAbsolute(a, b);
+        } else {
+            return goal(a) > goal(b);
+        }
     });
-    elites.resize(eliteSize);
-    return elites;
+    std::copy(combinedPopulation.begin() + eliteSize, combinedPopulation.end(), std::back_inserter(populationWithoutElite));
+    std::copy(combinedPopulation.begin(), combinedPopulation.begin() + eliteSize, std::back_inserter(elites));
+    return populationWithoutElite;
 }
+
+std::vector<color_t> MasterMind_genetic::crossoverParents(std::vector<int> parents, auto crossover) {
+    std::vector < color_t > newPopulation;
+    auto random = randomFloat(0.0,1.0);
+    for (int i = 0; i < population.size(); i += 2) {
+        if(population.size()-1 == i) {
+            newPopulation.push_back(population[parents[i]]);
+            break;
+        };
+
+        color_t parent1 = population[parents[i]];
+        color_t parent2 = population[parents[i + 1]];
+        std::vector<color_t> currentParents={parent1,parent2};
+        std::vector < color_t > children;
+        if (random < config.GAConfig.crossoverProb) children = crossover(parent1,parent2);
+        else children = currentParents;
+        for (auto & o: children) newPopulation.push_back(o);
+    }
+    return newPopulation;
+}
+

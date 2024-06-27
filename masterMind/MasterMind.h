@@ -19,26 +19,27 @@ using tinyInt = short;
 
 typedef std::vector<std::pair<std::string, tinyInt>> vector;
 enum Param{
-    RANDOM,DETERMINISTIC,SWAP, DOUBLE_POINT,
-    UNIFORM,MAX_GENERATIONS,
-    FITNESS
+    RANDOM,DETERMINISTIC,SWAP, DOUBLE_POINT,FITNESS
 };
 struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct GA{
-    int generation = 30;
+    int generation = 20;
     int population = 100;
-    int eliteSize = 5;
+    int eliteSize = 15;
+    double crossoverProb=0.9;
+    double mutationProb=0.01;
+
 };
 struct Config {
-    std::string selected_solver = "solve_random";
+    std::string selected_solver = "solve_genetic";
     std::string pathColorFile = "../data/color.txt";
-    std::string pathSolutionFile = "../data/solution.txt";//    ../data/solution.txt
+    std::string pathSolutionFile;//    ../data/solution.txt
     int codeLength = 30;
     bool communication = false;
     int maxInteraction = 1000;
-    GA GAConfig = {};
+    GA GAConfig;
     std::vector<Param> params = std::vector<Param>(3);
 };
 
@@ -66,7 +67,9 @@ public:
     color_t getGuessSolution();
 
     color_t getTheBestSolution();
-    bool betterSolution(const color_t &guess);
+    bool betterSolution(const color_t &);
+    int getCorrectCounter(const color_t &);
+    bool betterSolutionAbsolute(const color_t &,const color_t &);
     bool fullCompatibility(color_t&);
     int randomColor() const;
 
