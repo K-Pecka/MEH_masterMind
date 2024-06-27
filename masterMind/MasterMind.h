@@ -25,8 +25,8 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct GA{
-    int generation = 20;
-    int population = 100;
+    int generation = 200;
+    int population = 150;
     int eliteSize = 15;
     double crossoverProb=0.9;
     double mutationProb=0.01;

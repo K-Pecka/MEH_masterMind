@@ -92,11 +92,25 @@ color_t MasterMind::loadFile(const std::string& path) const {
     file.close();
     return content;
 }
-
+int MasterMind::getCorrectCounter(const color_t& solution){
+    int counter = 0;
+    for(int i=0;i<solution.size();i++) counter += (solution[i]==correctSolution[i]) ?1:0;
+    return counter;
+}
+bool MasterMind::betterSolutionAbsolute(const color_t& guess,const color_t& current){
+    return getCorrectCounter(guess) > getCorrectCounter(current);
+}
 
 bool MasterMind::betterSolution(const color_t &guess) {
     if(config.communication)std::cout << goal(guess) << ">" << goal(theBestSolution) << std::endl;
-    if (goal(guess) > goal(theBestSolution)) {
+    auto guessGoal = goal(guess);
+    auto theBestSolutionGoal = goal(theBestSolution);
+    if (guessGoal >= theBestSolutionGoal) {
+        if(guessGoal == theBestSolutionGoal)
+        {
+            if(betterSolutionAbsolute(guess,getTheBestSolution()))setSolution(guess);
+            return true;
+        }
         setSolution(guess);
         return true;
     }
@@ -152,7 +166,11 @@ color_t MasterMind::theBestNeighbor(std::vector<color_t>& neighbors)
         throw std::invalid_argument("neighbor list is empty");
     }
     auto it = *std::max_element(neighbors.begin(), neighbors.end(), [this](auto a, auto b) {
-        return this->goal(a) < this->goal(b);
+        if (goal(a) == goal(a)) {
+            return betterSolutionAbsolute(a, b);
+        } else {
+            return goal(a) > goal(b);
+        }
     });
 
     return it;
