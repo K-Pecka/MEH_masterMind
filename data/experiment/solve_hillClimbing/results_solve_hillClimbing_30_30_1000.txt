@@ -1,0 +1,60 @@
+3 0 M D E D I G X E U 0 M 0 J D P F H C H F L T 0 0 H 1 A N 
+C D X H I E L D D W M E G O Z 0 M E T F M 2 D O Z S E Y U 0 
+1 1 1 1 1 1 1 1 1 0 1 1 1 0 0 1 1 1 1 1 1 0 1 0 0 0 1 0 1 1 
+22/60
+36.6667%
+16804 microseconds
+M N B E 0 E P B K L I R U O X E A K C D G W N J W D 2 M G 1 
+F E U 2 1 Z C U 3 E D 3 M Z P C B A P A 0 O 2 Z Z R T 2 R G 
+0 1 1 1 1 0 1 1 0 1 1 0 1 0 1 1 1 1 1 1 1 1 1 0 0 1 0 1 1 1 
+22/60
+36.6667%
+12486 microseconds
+3 S Z C L Y Z K 1 G K C L J M K R H G X U J I T I T Y E B E 
+M N 2 M K A S A L P D D D 3 Y E R J O G W I J Z U L L Y U 0 
+1 0 0 1 1 0 1 0 1 0 0 0 0 1 1 1 2 1 0 1 0 1 1 1 1 1 1 1 1 0 
+20/60
+33.3333%
+12181 microseconds
+L 1 J U M I F R E E E B G H I R W 1 Z 0 K O F H D 1 H E T 0 
+C X I T K Y Y K E W U G D E M A B F F I X 1 3 K 3 O I D R O 
+0 0 1 1 1 0 0 1 2 1 1 1 1 1 1 0 1 1 1 1 0 1 0 1 0 1 1 1 1 1 
+23/60
+38.3333%
+12492 microseconds
+O F J E I E F P E K Y G N 1 C 3 Y E O J Y D R G I K N W D Y 
+D B M Y C K N Y U J Y Z Z E 3 K L X A 3 2 0 W J P I K 2 H R 
+1 0 0 1 1 1 1 1 0 1 2 0 0 1 1 1 0 0 0 1 0 0 1 1 1 1 1 0 0 1 
+19/60
+31.6667%
+12103 microseconds
+P H J Y H R C D K 2 K Z A 2 W J T D J Z E 0 Z U D Y T U H C 
+T Y M Y P C G F I X D A K R I O A T B E Y 1 F E 3 W D D N Z 
+1 1 0 2 1 1 0 0 0 0 1 1 1 1 0 0 1 1 0 1 1 0 0 1 0 1 1 1 0 1 
+19/60
+31.6667%
+12221 microseconds
+D H I 2 G 2 O Z U Y 1 T Y F D Z J F I F 3 N Z R 0 R 2 O O T 
+B J R E S E E E R G A I M 0 A C T K B T Z R M P W W Z M 0 K 
+0 1 1 0 0 0 0 0 1 1 0 1 0 1 0 0 1 0 0 1 1 1 0 0 0 0 1 0 1 0 
+12/60
+20%
+12267 microseconds
+Z J M P U I D C Y Z U Y Y C P D Y O Y O P H R X O H R G S T 
+T 2 K P 2 F U K X I F G K D J U M O M 0 L I P I O G I 3 E I 
+1 0 0 2 0 0 1 0 1 1 0 1 0 1 1 1 1 2 1 0 0 1 1 1 2 1 1 0 0 1 
+22/60
+36.6667%
+12353 microseconds
+D B I 0 K 0 T E O 2 C J 0 3 T S Y C A 1 S H O N G X L Y G D 
+N Z O 3 G D N W S Y Z B A L J U 1 M 1 2 3 H C D U F A X K I 
+1 0 1 1 1 1 1 0 1 1 0 1 1 1 1 0 1 0 1 1 1 2 1 1 0 0 1 1 1 1 
+24/60
+40%
+12320 microseconds
+N F E Y 3 K Z Z R J H I D T 2 W T L 3 W O O Y Y 3 T L W 2 R 
+P G J B D E L O U N X M R L F T F I P N N A F C 1 R E E 1 G 
+0 0 1 0 1 1 1 1 0 1 0 0 1 1 1 1 1 1 0 1 1 0 1 0 0 1 1 1 0 0 
+18/60
+30%
+12104 microseconds

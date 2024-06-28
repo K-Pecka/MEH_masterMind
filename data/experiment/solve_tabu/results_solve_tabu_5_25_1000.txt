@@ -1,0 +1,60 @@
+H O D E R 
+X D E K O 
+0 1 1 0 1 
+3/10
+30%
+402564 microseconds
+L T U F A 
+S E F K J 
+0 0 1 0 0 
+1/10
+10%
+399269 microseconds
+E N N H W 
+L G J X R 
+0 0 0 0 0 
+0/10
+0%
+412558 microseconds
+R D L Y N 
+K M O H X 
+0 0 0 0 0 
+0/10
+0%
+412415 microseconds
+T G E P I 
+S K N K C 
+0 0 0 0 0 
+0/10
+0%
+411352 microseconds
+A G M D T 
+H A O F X 
+0 1 0 0 0 
+1/10
+10%
+508864 microseconds
+N X E M C 
+C C J L U 
+1 1 0 0 0 
+2/10
+20%
+535248 microseconds
+P J D D X 
+I Y M U A 
+0 0 0 0 0 
+0/10
+0%
+403973 microseconds
+I Y H P W 
+F A J M X 
+0 0 0 0 0 
+0/10
+0%
+405121 microseconds
+K B S U A 
+G N E L E 
+0 0 0 0 0 
+0/10
+0%
+404364 microseconds

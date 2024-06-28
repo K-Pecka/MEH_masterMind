@@ -25,17 +25,18 @@ struct Guessed {
     color_t colors = {"red", "green", "blue"};
 };
 struct GA{
-    int generation = 200;
-    int population = 150;
+    int generation = 20;
+    int population = 200;
     int eliteSize = 15;
     double crossoverProb=0.9;
     double mutationProb=0.01;
 
 };
 struct Config {
-    std::string selected_solver = "solve_genetic";
+    std::string selected_solver = "solve_tabu";
     std::string pathColorFile = "../data/color.txt";
     std::string pathSolutionFile;//    ../data/solution.txt
+    bool testMode = false;
     int codeLength = 30;
     bool communication = false;
     int maxInteraction = 1000;

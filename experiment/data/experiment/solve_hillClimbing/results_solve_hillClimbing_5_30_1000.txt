@@ -1,0 +1,50 @@
+D U D G 1 
+I T F S Z 
+0 0 0 0 0 
+0
+24794
+X B X I Y 
+W 0 3 I D 
+0 0 0 2 0 
+2
+986
+3 K Y G D 
+O 1 1 T L 
+0 0 0 0 0 
+0
+628
+Z G 3 E M 
+G M Y T 1 
+1 1 0 0 0 
+2
+645
+L N D D Z 
+U O U 2 I 
+0 0 0 0 0 
+0
+638
+S L X H E 
+P K G D X 
+0 0 0 0 1 
+1
+618
+U A E T T 
+P X U P E 
+0 0 1 0 1 
+2
+652
+F 3 A G Z 
+X P 2 X S 
+0 0 0 0 0 
+0
+622
+D D Y P N 
+H H E L J 
+0 0 0 0 0 
+0
+649
+D S S D F 
+0 D E Y E 
+0 1 0 0 0 
+1
+635

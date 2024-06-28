@@ -1,0 +1,50 @@
+L R H B N D Y R Y B N U B I F D Y R M U O P H B F C O H I I 
+I R D L A E H U B O D H H E O B S E L K C O K K I E M D E D 
+1 2 1 1 0 0 1 1 1 1 1 1 1 0 1 1 0 0 1 0 1 1 0 0 1 0 1 1 0 1 
+21
+12678
+U O L W Y J K L E W F D I E D C A W E D U E Y X A N N B I M 
+A O X G W M D Y L W G J J M D C T L M F M U R A C Y B M E Y 
+1 2 1 0 1 1 1 1 1 2 0 1 1 1 2 2 0 1 1 1 1 1 0 1 1 1 1 1 1 1 
+30
+12558
+E I K B X E N H G J J G L M T N E E J J K N J U B L G D S R 
+K M B A Y E K F W N S I T B S H D C E I C E E Y W D I B S E 
+1 1 1 0 0 2 1 0 0 1 1 1 1 1 1 1 1 0 1 1 0 1 1 0 0 1 1 1 2 1 
+24
+12222
+M H E D D F T M E L I U G S N K U H W U H R T B L B D D M K 
+J J W W R A W A N L D R A E T L T E S E N W C S P K Y S B B 
+0 0 1 1 1 0 1 0 1 2 1 1 0 1 1 1 1 1 1 1 1 1 0 1 0 1 0 1 1 1 
+23
+12465
+D E M L D W W C J D L F I C C B T R E O N F C A E D D K M W 
+F W J T E S W P F N J P L K C B H S W D C N P D M H U G G H 
+1 1 1 1 1 0 2 0 1 1 1 0 1 1 2 2 0 0 1 1 1 1 0 1 1 0 0 0 0 0 
+22
+12475
+F F I P L U Y E L X K H D E X E M X D C G G S O D R O A L D 
+E C S F J H I F R J M G I I E L G K E A J S L E O L D A X D 
+1 1 1 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 2 1 2 
+29
+12474
+C E L E K E B F T L J E S X X I N I I A L T O P G X E F Y W 
+H R T O P I S U I C X W L P K C U L W T K D D J X G X D D B 
+0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 0 0 1 
+22
+12227
+Y A W T P L O J W Y W Y G D F A T C S O Y E P I J U N O F B 
+B P O P D G T T O H X T F G J K I L N T O D L A R J K L E O 
+1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 0 1 1 1 
+25
+12305
+C A E P N G I C E J B J H B D I T D T M D D E E N J D P W D 
+K G F D U D L T N W P S D K O X A G K R R D D D K F M B D L 
+0 1 0 1 0 1 0 1 1 1 1 0 1 0 0 0 1 1 0 0 0 2 1 1 0 0 1 1 1 0 
+17
+12549
+T T S W S D K T J M T O B K H X E C M J D A U Y A M A T C N 
+I I I E Y P C C T J N R N N I F Y E B O J I G J E E F S D H 
+0 0 0 1 1 0 1 1 1 1 1 0 1 1 0 0 1 1 1 1 1 0 0 1 1 1 0 1 1 1 
+20
+12086

@@ -1,0 +1,50 @@
+B A C E H C G A D F J E G J C I I B I G H J D E G D I H B C B J J G I C G E J G C C C C E J E C I G I E A B H A I D J H F J A I A A B A F J H I H J G C D B G C D B C B B A A C A J C H G D C J E A B H 
+F E G G F B E A F E J F A E F C H F D F E H C I I F F E J E J B B F D I J D F J E B H D E D J D J H B I I B C E G C F C D F I B D C H C H A B G G J B I F F E C I B I J G J G D A E G D H J C A J F J F 
+1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 1 2 1 1 1 1 1 1 2 1 1 1 1 1 2 1 1 1 1 1 
+109
+185920
+A C E D I C J H B D E E H E H B A J E J E I I E B E J C H C C F G E F G C E H E I E G D C H C A D I B H B F D D F D J E H E D D D I J I E F D F E H F G J E I E J E I G A B B H F J G J A C F J J I G I 
+B F G C B F D J H H I J H J C E B A J G A J H J E J B F B B A H D J D F A D F E F G F D G A J A G D E D F G I A C J B A G H J J B I C E J C I J H I I F E J E B D D B D A D F I E E E E H A F J F E C A 
+1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 
+108
+191523
+I G I F I C B A C B C A F B I H D E A A D A F I A A B F A B C C J H I J G A A C C J J D C D I J G G C D E D C C J E H D G H B F I C D H H C J C C A C G B B A C I J G D B B C J G A H F A E I H F D G D 
+D E B F G A J E C A H D G C J A C F C F A J E A I I D I E B A B B I E I C J B G C F I C I J A G H C B B D G G J H B B G H H H B F H G I I D G F A H A G F J G G B I B G I I C C J C F H J B H D A E G G 
+1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 
+108
+262430
+G J D A H C F H B D E C B J B F F E B A H I A H B B J G B I E A D D H A A G J B E H F C I I G G D B H D F F B A C D F G G E I B F G E G J F D F B C B D G B B G A D J I D J E B D G C B E E A H G C B G 
+G D C F I B A J G B B G C G A G A B B C C F F A F C B A D E D B B G D G H E I I J E A F E G C G A A A J A E F D H G J D D B H A E G J A C C A J I I B C I H J G D D B G E I E C H I E B B C H F A H C B 
+2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 2 1 2 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 
+109
+270176
+B D J I D H A C J G G A C G G F J H I C I G E D E H G D G I F E H E I J A A G F F J I B I G B H H D C F I D A B H I D E J D B B E F F H G I A D C J I I I C H A G D F G G I I D H A G B C C J H E B G I 
+H I A A G F B J C J E F J D J H A H D J G E I A F C C C A A B G J E F A A D H J E J B I G J C E D I I C H F E E J E I E F F B I B A G J H J F E J J G H C D C F C D C D F F D C J E B D I B E G J A H I 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 
+109
+567220
+A C B E B E J A D B F A E G E F C C H F F I E I J H E C H G C F A E F C H C I F J B A F F D B I G E E G H J G C E C E B J J F C G F E I B E F A I F H B E H F C A B G F D C F A C E I D C D H C A A I C 
+B F E H B B F F H E E B C J F C I B I F F F B H J G B F C B E J H E E J B G D E J H B J G D I E I F A C C F C F C A J F D D B A C A G B H G C A F F F J A E G A D D F C A E G J B D E J C H D F G E B H 
+1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 
+110
+318232
+D D H E I C H F J G D F A A G F E I C E F E H F A F B F G F F F H E B H I B I F I G H F J E J A E J E E E G G C H E G E G D F I C A H H G F E B E H I C E C F C D E A A H I H H F J I J C I A B C B J G 
+D G D D B H E J H F I A E C A J J F F E C J J F I B A J D J B E H D F G H D B A J C E B J J C H J H D D A F E D D E D F D F C F G F C I J H E J C D H D J F D C I D A H C B H G G D G B D D B G C A A A 
+2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 2 1 1 1 1 1 1 1 1 1 2 1 1 1 
+111
+429046
+J I B F F B J I H G A F C H C J I C D F C H G E I D E B D B A B J C C E J D D G D J F C B D I F H A F A F E E E E F A G F C B F A J J F B J C D I A G E I A B D B J F H A I C F E C B G F F G H D J F E 
+J J I F G A A C A J E J G J D D H G D I E B D D F G F E F F A E D J C C B F E C H C D F E I G J B H D B C A C G I E F H E H E E C D D C E G G E E A I A E B F G F I C A B G G A H B C G C D B G G C J B 
+2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 
+107
+551516
+J G F C A I J G E C E F H G I I E C B E G G J A C B B E E F F H G E G I E C G D H D I A D C J G G B E G C I I F B C J D J J I G I H A G A H I B I D A C E G A I J F A G C J A A A J G A D E D C J D I A 
+C J H I E B J C J C H H G A I E B E A A A I A A H C C J E B A J D J H E F D A D I D G G G H I J I D D F B I I I B I B E D B G J J C B B I C F G I J D F E A A D F D B B G H H J J I E E C E E H H J I F 
+1 1 1 1 1 1 2 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 2 1 1 1 1 1 1 1 1 1 1 1 2 2 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 2 1 
+115
+277738
+H D E I E E C H H C J C B D G J G H D I C D G B B D I A E I J H I H G C E C E E D G G J A J C F C E H F D G I I B D F B G F F F G G C B F A J F B B D H H J I G C D G H C E H G C H G J F G I D A I F J 
+E B C B D H D D E F H E E B I D E C C B E F F D C G J H A G H C H J D A B C G J J C C H I J A E A D C J I H F J E I E D H F J H B C D J E F H H C I C J J A D I D E J J J G C F A H B H C J G H D F D F 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 
+104
+196293

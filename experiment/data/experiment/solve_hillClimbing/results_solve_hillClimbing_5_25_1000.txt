@@ -1,0 +1,50 @@
+U A E R Y 
+D X J R X 
+0 0 0 2 0 
+2
+54261
+D P L U M 
+I A U N K 
+0 0 1 0 0 
+1
+657
+H Y D C W 
+R K J W B 
+0 0 0 1 0 
+1
+629
+N G U A R 
+C S U D X 
+0 0 2 0 0 
+2
+687
+J S D H J 
+K X M I Y 
+0 0 0 0 0 
+0
+875
+C J R L T 
+F M N W O 
+0 0 0 0 0 
+0
+673
+M E Y P L 
+F P A K S 
+0 1 0 0 0 
+1
+626
+K F K X C 
+P D U C K 
+0 0 0 1 1 
+2
+743
+D L E P E 
+M E I R D 
+0 1 0 0 1 
+2
+664
+Y K D O J 
+M A S Y Y 
+0 0 0 1 1 
+2
+795

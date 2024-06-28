@@ -197,8 +197,13 @@ void MasterMind::showCorrectPosition(const std::vector<tinyInt>& positions) cons
     auto max = config.codeLength * weight;
     auto count=std::accumulate(positions.begin(), positions.end(), 0.0);
     std::cout<<positions;
-    std::cout<<count<<"/"<<max<<std::endl;
-    std::cout<<(count/max)*100<<"%"<<std::endl;
+    if(!config.testMode) {
+        std::cout << count << "/" << max << std::endl;
+        std::cout<<(count/max)*100<<"%"<<std::endl;
+    }else{
+        std::cout<<count<<std::endl;
+    }
+
 }
 
 color_t MasterMind::getTheBestSolution() {
@@ -211,16 +216,18 @@ color_t MasterMind::getTheBestSolution() {
 }
 void MasterMind::printSolve() {
     if(config.communication) std::cout << "Correct solution: ";
+
     std::cout<<correctSolution;
+
     auto start_time = std::chrono::system_clock::now();
-    solve();
+    std::cout << solve();
     auto end_time = std::chrono::system_clock::now();
     auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
 
-    std::cout << getTheBestSolution();
     showCorrectPosition(getCorrectPosition(correctSolution, getTheBestSolution()));
-    std::cout << computation_time.count() << " microseconds" << std::endl;
 
+    if(!config.testMode)std::cout<< computation_time.count()<< " microseconds" << std::endl;
+    else std::cout << computation_time.count()<< std::endl;
 }
 
 void MasterMind::setSolution(color_t guess) {

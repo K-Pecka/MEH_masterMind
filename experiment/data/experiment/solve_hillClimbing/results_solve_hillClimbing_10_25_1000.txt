@@ -1,0 +1,50 @@
+L X O J H O J E Y N 
+L E U J W I H J X M 
+2 1 0 2 0 0 1 1 1 0 
+8
+2684
+T I G D M O W L N K 
+B M K H U Y B M D U 
+0 1 1 0 0 0 0 1 1 0 
+4
+1951
+N C G E D Y D O E E 
+B D F I E B X D I U 
+0 1 0 0 1 0 0 1 0 0 
+3
+1846
+W F U L I E T T P D 
+E S G E P F P G R E 
+1 0 0 1 1 1 1 0 0 1 
+6
+1876
+S K H F J X I C K J 
+M K N E P H B D U D 
+0 2 0 0 0 1 0 0 0 0 
+3
+2216
+E I P R B Y D L H D 
+U X C I C D K X J D 
+0 0 0 1 0 1 0 0 0 2 
+4
+1929
+B E M J W W W W L U 
+H U S U C E D B U E 
+0 1 0 1 0 1 0 1 1 1 
+6
+2028
+M F J F F M P L A M 
+C K C W P K A H Y A 
+0 0 0 0 1 0 1 0 0 1 
+3
+2846
+S W T W E G D Y B Y 
+L C H H F L M G G E 
+0 0 0 0 0 0 0 1 1 1 
+3
+2713
+Y K X P T M K F E M 
+E E I J C G Y N L H 
+1 1 0 0 0 0 1 0 0 0 
+3
+2241

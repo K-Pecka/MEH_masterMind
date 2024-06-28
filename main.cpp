@@ -39,6 +39,10 @@ int main(int argc, char* argv[]) {
         {
             config.selected_solver = args[i+1];
         }
+        if(args[i] == "-test" || args[i] == "-t")
+        {
+            config.testMode = true;
+        }
         if(args[i] == "-param")
         {
             while (i + 1 < args.size() && args[i + 1][0] != '-') {

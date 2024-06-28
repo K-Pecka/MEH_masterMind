@@ -1,0 +1,50 @@
+E I A I E 
+E B H D A 
+2 0 0 0 1 
+3
+511727
+D A I C I 
+H E E G A 
+0 0 0 0 1 
+1
+549063
+H C E E D 
+G J D C C 
+0 0 1 1 1 
+3
+516844
+D B G B F 
+C G I C J 
+0 1 0 0 0 
+1
+514782
+F D I C J 
+I I F J A 
+1 1 1 1 0 
+4
+806916
+J B B B C 
+B D F J J 
+1 0 0 1 1 
+3
+531053
+G E G I F 
+G G B C I 
+2 1 0 0 1 
+4
+522155
+G G I C A 
+A G A G A 
+1 2 1 1 2 
+7
+500282
+F I D D A 
+D H C F I 
+1 0 0 1 1 
+3
+503667
+H J I A H 
+D J J A B 
+0 2 1 2 0 
+5
+524402

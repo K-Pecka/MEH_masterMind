@@ -1,0 +1,50 @@
+A I B G B G J G F B 
+F G B A B G A D B G 
+1 1 2 1 2 2 1 0 1 1 
+12
+1791389
+A D G I D H B J A E 
+H A E I A F D G G A 
+1 1 1 2 1 0 1 1 1 1 
+10
+2223489
+B C E J I I B H F C 
+I J J G J F F G E B 
+1 1 1 0 1 1 1 0 1 1 
+8
+2465116
+D A C J J F H A C D 
+C C I F I E G E C B 
+1 1 0 1 0 0 0 0 2 0 
+5
+2248876
+F F D G D G I C E D 
+F I C G B J H D B C 
+2 1 1 2 0 0 0 1 0 1 
+8
+2117000
+F D I G A D D E C B 
+J E A B C J F G A J 
+0 1 1 1 1 0 1 1 1 0 
+7
+1995478
+J J I J F C I C C E 
+G J G E I C C C D F 
+0 2 0 1 1 2 1 2 0 1 
+10
+2569559
+I B B D J I B G E B 
+H I F F C D I D D C 
+0 1 0 0 0 1 1 1 1 0 
+5
+3071032
+J J H A I A F E F I 
+F I A J D D D E E F 
+1 1 1 1 0 0 0 2 1 1 
+8
+3402974
+H C D G G A D F F J 
+G F A J F J H E D I 
+1 1 1 1 1 1 1 0 1 0 
+8
+3227167

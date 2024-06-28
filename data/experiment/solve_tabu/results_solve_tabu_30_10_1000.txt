@@ -1,0 +1,60 @@
+I E F D G J G D D A A G I B G J H I G D G I F C G F F E D B 
+B B H I C D A G H J A J I B E I I A B B D A B B B C C C J A 
+1 1 1 1 1 1 1 1 1 1 2 1 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+33/60
+55%
+10815785 microseconds
+D C C B J H C B D G D B G B H F C D A C H B D G A C H C I I 
+I B C A D H I I C G F G B G D G J B B F A A I I J H H E C D 
+1 1 2 1 1 2 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 0 1 1 
+33/60
+55%
+10557398 microseconds
+I H C E D G A J B I I H A B G D E I H H F D H C G C G H B H 
+A G A B D E C I C D C A J D J E C D E A C G D D H E J B C D 
+1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+31/60
+51.6667%
+11457518 microseconds
+B G B F I J H F I A B F A I H D A C D F B F A E E B I F G B 
+A H A I F F F A G A F A C C E I J A C A E A H D D H D B H A 
+1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+31/60
+51.6667%
+15245700 microseconds
+H I C G F B I I J C C E E J E A E H D D A J F H B D D A D G 
+H F E H J B A B E H A G G H F C I E E D A F I A F E J D B D 
+2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 1 1 1 1 1 
+34/60
+56.6667%
+13874061 microseconds
+H B D G C B A J D D A J D G C A C A F B E H J F C B D J B J 
+A A I G A D I C E D C I C F A E D H J F E F G D G I C A J A 
+1 1 0 2 1 1 0 1 1 2 1 0 1 1 1 1 1 1 1 1 2 1 1 1 1 0 1 1 1 1 
+29/60
+48.3333%
+10798590 microseconds
+H D A E J A E J C B E B D I J F J B D D J G E E J B D F E C 
+D C J H B G E G H C B E E J B F G D G H G G E D A C C C A D 
+1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 2 2 1 1 1 1 1 1 1 
+34/60
+56.6667%
+11255319 microseconds
+E E H C I F H D C A F I F D G G A B B I I F C G C I H E D C 
+C G I D G H E B G G I G I A F F H E F B I A E G G E A B I C 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 1 2 
+33/60
+55%
+10589735 microseconds
+B E A H F H C B A E G G F A J H F F B C I C A F C C G E I B 
+C G F J F H A F G H H B J I C I B G A G J D B A J E C J G H 
+1 1 1 1 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 
+31/60
+51.6667%
+10434322 microseconds
+D F F B E H E H B J C B I C C E C A G G B G C A D F E F F E 
+I E I A E I G G H H F E H H J F E I J H I C A B G C I E I J 
+1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+31/60
+51.6667%
+10359210 microseconds
