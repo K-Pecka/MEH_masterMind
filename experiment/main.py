@@ -1,5 +1,7 @@
 import os
 import glob
+import matplotlib.pyplot as plt
+from collections import defaultdict
 
 methods = ["solve_hillClimbing", "solve_tabu"]
 
@@ -22,7 +24,7 @@ def read_data_from_file(filename):
     solutions = []
     sumV = 0
     sumT = 0
-    minT = -1
+    minT = float('inf')
     maxV = 0
 
     i = 0
@@ -41,27 +43,25 @@ def read_data_from_file(filename):
             'time': time
         })
 
-        maxV = max(maxV, correctValue)
-        minT = min(minT, time)
-        sumV += correctValue
-        sumT += time
+        maxV = max(maxV, correctValue / (len(correctPosition) * 2))
+        minT = min(minT, time / 1000000)
+        sumV += correctValue / (len(correctPosition) * 2)
+        sumT += time/ 1000000
 
         i += 5
 
     avgV = sumV / len(solutions)
     avgT = sumT / len(solutions)
 
-    # Extracting parameters from filename
     filename_parts = os.path.basename(filename).split('_')
-    length = filename_parts[2]
-    color = filename_parts[3]
-    iteration = filename_parts[4].split('.')[0]
+    length = filename_parts[-3]
+    color = filename_parts[-2]
+    iteration = filename_parts[-1].split('.')[0]
     avgV = sumV / len(solutions)
     avgT = sumT / len(solutions)
-    return ExperimentData(os.path.basename(filename), length, color, iteration, maxV, minT, avgV, avgT, solutions)
+    return ExperimentData(os.path.basename(filename), length, color, iteration, maxV*100, minT, avgV*100, avgT, solutions)
 
-data_folder = './data/experiment/'
-
+data_folder = 'experiment/data/experiment/'
 experiment_data_dict = {method: [] for method in methods}
 
 for method in methods:
@@ -70,8 +70,7 @@ for method in methods:
     for data_file in data_files:
         experiment_data = read_data_from_file(data_file)
         experiment_data_dict[method].append(experiment_data)
-
-# Display loaded data
+"""
 for method, data_list in experiment_data_dict.items():
     print(f"Method: {method}")
     for data in data_list:
@@ -88,3 +87,35 @@ for method, data_list in experiment_data_dict.items():
             print(f"    Correct Value: {solution['correctValue']}")
             print(f"    Time: {solution['time']}")
         print()
+"""
+metrics = ['max_value', 'min_time', 'avg_value', 'avg_time']
+
+metric_units = {
+    'max_value': '%',
+    'min_time': ' ms',
+    'avg_value': '%',
+    'avg_time': ' ms'
+}
+for metric in metrics:
+    plt.figure(figsize=(10, 6))
+    plt.ticklabel_format(style='plain', axis='y')
+    for method, data_list in experiment_data_dict.items():
+        values = [getattr(data, metric) for data in reversed(data_list)]
+        points = list(range(1, len(data_list) + 1))
+        
+        plt.plot(points, values, marker='o', linestyle='-', label=f'{method} - {metric.replace("_", " ").title()}')
+    
+    combination_desc = []
+    for data in  reversed(data_list):
+        description = f"{data.color}\n{data.length}\n{data.iteration}"
+        combination_desc.append(description)
+    plt.xticks(points, [f'{i}' for i in combination_desc])
+    plt.xlabel('Combination')
+    plt.ylabel(metric_units[metric])
+    plt.title(f'{metric.replace("_", " ").title()} for Each Method')
+    plt.legend(loc='best')
+    plt.grid(True)
+    method_desc = f"no. of color: \ncode length: \niteration:"
+    plt.figtext(0.1, -0.45, method_desc, wrap=True, horizontalalignment='center', fontsize=10)
+    plt.tight_layout()
+plt.show()
