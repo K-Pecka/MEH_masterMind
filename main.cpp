@@ -16,7 +16,6 @@ int main(int argc, char* argv[]) {
 
     std::vector<std::string> args(argv,argc+argv);
     std::unordered_map<std::string,Param> params ={
-            {"random",Param::RANDOM},
             {"deterministic",Param::DETERMINISTIC},
 
             {"swap",Param::SWAP},
@@ -98,7 +97,7 @@ int main(int argc, char* argv[]) {
             std::string comm = args[i+1];
             config.communication = (comm == "true" || comm == "1");
         }
-        if(args[i] == "-solutionPath" || args[i] == "-s")
+        if(args[i] == "-solutionPath" || args[i] == "-sp")
         {
             config.pathSolutionFile = args[i+1];
         }
