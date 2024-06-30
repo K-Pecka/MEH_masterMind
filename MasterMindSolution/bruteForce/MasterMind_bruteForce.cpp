@@ -18,11 +18,11 @@ bool MasterMind_bruteForce::generateCombinations(int position, solution_t& curre
         --counter;
         return false;
     }
-    /*for (const auto& color : possibleColors.colors) {
-        currentCombination[position] = color;
+    for (int i=0;i<config.colorLength;i++) {
+        currentCombination[position] = i;
         if (generateCombinations(position + 1, currentCombination, counter)) {
             return true;
         }
-    }*/
+    }
     return false;
 }
