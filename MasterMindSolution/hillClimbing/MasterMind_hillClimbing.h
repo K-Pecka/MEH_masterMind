@@ -6,7 +6,7 @@ class MasterMind_hillClimbing: public MasterMind {
 public:
     MasterMind_hillClimbing() = default;
     explicit MasterMind_hillClimbing(Config configGame) : MasterMind(std::move(configGame)) {}
-    color_t solve() override;
+    solution_t solve() override;
 };
 
 

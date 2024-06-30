@@ -1,6 +1,6 @@
 #include "MasterMind_hillClimbing.h"
 
-color_t MasterMind_hillClimbing::solve() {
+solution_t MasterMind_hillClimbing::solve() {
 
     bool isDeterministic = isInParams(Param::DETERMINISTIC);
 
@@ -12,13 +12,12 @@ color_t MasterMind_hillClimbing::solve() {
     int counter = config.maxInteraction;
     while (counter != 0){
         auto neighbors = generateNeighbor();
-        color_t bestNeighbor = (isDeterministic?theBestNeighbor(neighbors):randomNeighbor(neighbors));
+        solution_t bestNeighbor = (isDeterministic ? theBestNeighbor(neighbors) : randomNeighbor(neighbors));
         if (config.communication)
         {
             std::cout<<std::endl;
-            std::cout << "S>" << getTheBestSolution();
+            std::cout<<"S>"<< getTheBestSolution();
             std::cout<<"N>"<<bestNeighbor;
-            std::cout <<getCorrectPosition(bestNeighbor,correctSolution);
             std::cout<<std::endl;
         }
 

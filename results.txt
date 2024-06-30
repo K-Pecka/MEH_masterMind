@@ -1,6 +1,6 @@
-C K G Y Z O 9 A G N 
-M 0 R 8 0 1 O 3 T 6 
-0 0 0 0 0 0 1 0 0 0 
-1/20
-5%
-1913 microseconds
+D E G C K C K E L K M C J C I J J H A E E G F K I F L A D I 
+D E G C E C C E K K A J J I I J C H L E E G F F I F E A C I 
+2 2 2 2 1 2 1 2 1 2 1 1 2 1 2 2 1 2 1 2 2 2 2 1 2 2 1 2 1 2 
+49/60
+81.6667%
+14805405 microseconds

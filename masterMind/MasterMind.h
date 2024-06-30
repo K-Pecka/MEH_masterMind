@@ -13,16 +13,15 @@
 #include <functional>
 #include <set>
 #include <numeric>
+#include <fstream>
+#include <stdexcept>
 
-using color_t = std::vector<std::string>;
+using solution_t = std::vector<int>;
 using tinyInt = short;
+using Solutions = std::vector<std::pair<solution_t, solution_t>>;
 
-typedef std::vector<std::pair<std::string, tinyInt>> vector;
 enum Param{
-    RANDOM,DETERMINISTIC,SWAP, DOUBLE_POINT,FITNESS
-};
-struct Guessed {
-    color_t colors = {"red", "green", "blue"};
+    DETERMINISTIC,SWAP, DOUBLE_POINT,FITNESS
 };
 struct GA{
     int generation = 20;
@@ -33,66 +32,57 @@ struct GA{
 
 };
 struct Config {
-    std::string selected_solver = "solve_tabu";
-    std::string pathColorFile = "../data/color.txt";
-    std::string pathSolutionFile;//    ../data/solution.txt
+    std::string selected_solver = "solve_hillClimbing";
+    int colorLength = 5;
+    std::string pathSolutionFile = "../data/solution.txt";
     bool testMode = false;
     int codeLength = 30;
     bool communication = false;
     int maxInteraction = 1000;
+    int tabuSize = 1000;
     GA GAConfig;
     std::vector<Param> params = std::vector<Param>(3);
 };
 
-std::ostream& operator<<(std::ostream&, const color_t&);
-std::ostream& operator<<(std::ostream& o, const vector& g);
-std::ostream& operator<<(std::ostream& o, const std::vector<tinyInt >& result);
+std::ostream& operator<<(std::ostream&, const solution_t&);
+
 class MasterMind{
 public:
     MasterMind() = default;
     explicit MasterMind(Config configGame) : config(std::move(configGame)) {init();}
-    virtual color_t solve() = 0;
+    virtual solution_t solve() = 0;
 
     static int randomInt(int,int);
     static double randomFloat(double,double);
     static std::mt19937 random();
-    color_t loadFile(const std::string&) const;
-    color_t setLoadSolution(const std::string&);
+
+    Solutions loadFile(const std::string&) const;
+    Solutions setLoadSolution(const std::string&);
     void init();
 
     void printSolve();
-    void setSolution(color_t);
+    void setSolution(solution_t);
 
 
-    color_t generateRandomSolution();
-    color_t getGuessSolution();
+    solution_t generateRandomSolution();
 
-    color_t getTheBestSolution();
-    bool betterSolution(const color_t &);
-    int getCorrectCounter(const color_t &);
-    bool betterSolutionAbsolute(const color_t &,const color_t &);
-    bool fullCompatibility(color_t&);
+    solution_t getTheBestSolution();
+    bool betterSolution(const solution_t &);
+
     int randomColor() const;
 
-    int goal(const color_t &guess);
-    static int goal(vector &solution);
+    int goal(const solution_t &guess);
 
-    std::vector<tinyInt> getCorrectPosition(color_t,color_t) const;
-    void showCorrectPosition(const std::vector<tinyInt>&) const;
-
-    std::vector<color_t> generateNeighbor(const color_t& currentSolution);
-    std::vector<color_t> generateNeighbor();
-    color_t theBestNeighbor(std::vector<color_t>&);
-    static color_t randomNeighbor(std::vector<color_t>&);
+    std::vector<solution_t> generateNeighbor(const solution_t& currentSolution);
+    std::vector<solution_t> generateNeighbor();
+    bool fullCompatibility(solution_t);
+    solution_t theBestNeighbor(std::vector<solution_t>&);
+    static solution_t randomNeighbor(std::vector<solution_t>&);
     bool isInParams(Param);
-    static std::set<std::string> isInSolution(const color_t&);
 protected:
     Config config;
-    vector theBestSolution;
-    Guessed possibleColors;
-    color_t correctSolution;
-    std::set<std::string> colorInSolution;
-    double weight = 2;
+    solution_t theBestSolution;
+    Solutions guessSolution;
 };
 
 

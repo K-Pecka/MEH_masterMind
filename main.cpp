@@ -3,7 +3,7 @@
 #include <functional>
 
 #include "MasterMindSolution/random/MasterMind_random.h"
-#include "MasterMindSolution/bruteForce/MasterMind_bruteForce.h"
+//#include "MasterMindSolution/bruteForce/MasterMind_bruteForce.h"
 #include "MasterMindSolution/hillClimbing/MasterMind_hillClimbing.h"
 #include "MasterMindSolution/tabu/MasterMind_tabu.h"
 #include "MasterMindSolution/annealing/MasterMind_annealing.h"
@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
     };
     std::unordered_map<std::string, std::function<std::unique_ptr<MasterMind>(const Config&)>> solvers = {
             {"solve_random", [](const Config& cfg) { return std::make_unique<MasterMind_random>(cfg); }},
-            {"solve_bruteForce", [](const Config& cfg) { return std::make_unique<MasterMind_bruteForce>(cfg); }},
+            //{"solve_bruteForce", [](const Config& cfg) { return std::make_unique<MasterMind_bruteForce>(cfg); }},
             {"solve_hillClimbing", [](const Config& cfg) { return std::make_unique<MasterMind_hillClimbing>(cfg); }},
             {"solve_tabu", [](const Config& cfg) { return std::make_unique<MasterMind_tabu>(cfg); }},
             {"solve_annealing", [](const Config& cfg) { return std::make_unique<MasterMind_annealing>(cfg); }},
@@ -88,10 +88,6 @@ int main(int argc, char* argv[]) {
         {
             config.maxInteraction = std::stoi(args[i+1]);
         }
-        if(args[i] == "-colorPath" || args[i] == "-p")
-        {
-            config.pathColorFile = args[i+1];
-        }
         if(args[i] == "-communication" || args[i] == "-c")
         {
             std::string comm = args[i+1];
@@ -100,6 +96,10 @@ int main(int argc, char* argv[]) {
         if(args[i] == "-solutionPath" || args[i] == "-sp")
         {
             config.pathSolutionFile = args[i+1];
+        }
+        if(args[i] == "-tabuSize" || args[i] == "-ts")
+        {
+            config.tabuSize = std::stoi(args[i+1]);
         }
     }
     auto solver_it = solvers.find(config.selected_solver);

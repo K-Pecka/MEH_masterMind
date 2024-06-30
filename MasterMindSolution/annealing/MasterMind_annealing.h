@@ -6,11 +6,11 @@ class MasterMind_annealing: public MasterMind{
 public:
     MasterMind_annealing() = default;
     explicit MasterMind_annealing(Config configGame) : MasterMind(std::move(configGame)) {}
-    color_t solve() override;
+    solution_t solve() override;
 private:
     std::function < double(int) > T = [](auto i) {return double(1000 * std::pow(0.99, (double)i));};
-    bool acceptSolution(color_t&,color_t&,int&);
-    color_t generateRandomNeighbourNorm(color_t);
+    bool acceptSolution(solution_t&, solution_t&, int&);
+    solution_t generateRandomNeighbourNorm(solution_t);
 };
 
 
