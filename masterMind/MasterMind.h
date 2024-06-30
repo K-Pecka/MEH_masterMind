@@ -32,7 +32,7 @@ struct GA{
 
 };
 struct Config {
-    std::string selected_solver = "solve_hillClimbing";
+    std::string selected_solver = "solve_tabu";
     int colorLength = 5;
     std::string pathSolutionFile = "../data/solution.txt";
     bool testMode = false;
