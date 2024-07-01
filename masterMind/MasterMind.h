@@ -17,8 +17,7 @@
 #include <stdexcept>
 
 using solution_t = std::vector<int>;
-using tinyInt = short;
-using Solutions = std::vector<std::pair<solution_t, solution_t>>;
+using solutions = std::vector<std::pair<solution_t, solution_t>>;
 
 enum Param{
     DETERMINISTIC,SWAP, DOUBLE_POINT,FITNESS
@@ -32,7 +31,7 @@ struct GA{
 
 };
 struct Config {
-    std::string selected_solver = "solve_hillClimbing";
+    std::string selected_solver = "solve_tabu";
     int colorLength = 5;
     std::string pathSolutionFile = "../data/solution.txt";
     bool testMode = false;
@@ -56,15 +55,15 @@ public:
     static double randomFloat(double,double);
     static std::mt19937 random();
 
-    Solutions loadFile(const std::string&) const;
-    Solutions setLoadSolution(const std::string&);
+    static solutions loadFile(const std::string&) ;
+    solutions setLoadSolution(const std::string&);
     void init();
 
     void printSolve();
     void setSolution(solution_t);
 
 
-    solution_t generateRandomSolution();
+    solution_t generateRandomSolution() const;
 
     solution_t getTheBestSolution();
     bool betterSolution(const solution_t &);
@@ -73,16 +72,17 @@ public:
 
     int goal(const solution_t &guess);
 
-    std::vector<solution_t> generateNeighbor(const solution_t& currentSolution);
+    std::vector<solution_t> generateNeighbor(const solution_t& currentSolution) const;
     std::vector<solution_t> generateNeighbor();
-    bool fullCompatibility(solution_t);
+    bool fullCompatibility(const solution_t&);
     solution_t theBestNeighbor(std::vector<solution_t>&);
     static solution_t randomNeighbor(std::vector<solution_t>&);
     bool isInParams(Param);
 protected:
+    std::vector<std::pair<solution_t,int>> lastScore;
     Config config;
     solution_t theBestSolution;
-    Solutions guessSolution;
+    solutions guessSolution;
 };
 
 

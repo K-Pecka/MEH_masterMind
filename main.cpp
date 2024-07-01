@@ -97,17 +97,12 @@ int main(int argc, char* argv[]) {
         {
             config.pathSolutionFile = args[i+1];
         }
-        if(args[i] == "-tabuSize" || args[i] == "-ts")
-        {
-            config.tabuSize = std::stoi(args[i+1]);
-        }
     }
     auto solver_it = solvers.find(config.selected_solver);
     if (solver_it != solvers.end()) {
         auto solver = solver_it->second(config);
         try{
-            //for(int i=0;i<10;i++)
-                solver->printSolve();
+            solver->printSolve();
         }catch (const std::runtime_error& e) {
             std::cout<<-1<<std::endl;
             std::cerr << e.what() << std::endl;

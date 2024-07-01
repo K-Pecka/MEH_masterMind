@@ -1,17 +1,20 @@
 #include "MasterMind.h"
 
+#include <utility>
+
 std::ostream& operator<<(std::ostream& o, const solution_t& g) {
-    for (const auto& color : g) {
-        o << color << " ";
+    for (const auto& el : g) {
+        o << el << " ";
     }
     o << std::endl;
     return o;
 }
-std::ostream& operator<<(std::ostream& o, const std::vector<tinyInt>& result) {
-    for(tinyInt position : result) {
-        o << position<<" ";
+std::ostream& operator<<(std::ostream& o, const std::unordered_map<int,int>& g) {
+    o<<"{";
+    for (const auto& el : g) {
+        o << el.first << " : "<< el.second<<" ";
     }
-    o << std::endl;
+    o <<"}"<< std::endl;
     return o;
 }
 
@@ -47,7 +50,7 @@ void MasterMind::init() {
     }
 }
 
-solution_t MasterMind::generateRandomSolution() {
+solution_t MasterMind::generateRandomSolution() const {
     solution_t randomSolution;
     for (int i = 0; i < config.codeLength; ++i) {
         randomSolution.push_back(randomColor());
@@ -57,19 +60,19 @@ solution_t MasterMind::generateRandomSolution() {
     }
     return randomSolution;
 }
-Solutions MasterMind::setLoadSolution(const std::string& path){
+solutions MasterMind::setLoadSolution(const std::string& path){
     auto loadSolution = loadFile(path);
     config.codeLength = (int)loadSolution[0].first.size();
     return loadSolution;
 }
-Solutions MasterMind::loadFile(const std::string& path) const {
+solutions MasterMind::loadFile(const std::string& path) {
     std::ifstream file(path);
 
     if (!file.is_open()) {
         throw std::runtime_error("Error: Unable to open file " + path);
     }
 
-    Solutions content;
+    solutions content;
     std::string line1, line2;
 
     while (std::getline(file, line1) && std::getline(file, line2)) {
@@ -115,21 +118,59 @@ bool MasterMind::betterSolution(const solution_t &guess) {
     }
     return false;
 }
-
-int MasterMind::goal(const solution_t& guess) {
-    int totalCorrect = 0;
-
-    for (size_t i = 0; i < guessSolution.size(); ++i) {
-         auto solution = guessSolution[i];
-         auto sum = 0;
-        for(size_t j = 0; j < solution.first.size(); ++j)
-        {
-            if(guess[i] == solution.first[j]){
-                sum+=solution.second[j];
-            }
-        }
-        totalCorrect+=sum;
+std::unordered_map<int,int> mapGuessSolution( const solution_t& guess)
+{
+    std::unordered_map<int,int> solutionMap;
+    for(auto e:guess)solutionMap[e]++;
+    return solutionMap;
+}
+int getGoalValue(const solution_t& score, const solution_t& value) {
+    int result = 0;
+    for (int i = 0; i < score.size(); i++) {
+        result += score[i] - value[i];
     }
+    return result;
+}
+solution_t isInSolution(std::unordered_map<int, int>& SolutionMap,solution_t solution,solution_t guess)
+{
+    solution_t result(solution.size(),0);
+    for(int i=0;i<solution.size();i++)
+    {
+        if(solution[i] == guess[i])
+        {
+            SolutionMap[guess[i]]--;
+            result[i] = 2;
+        }
+    }
+    return result;
+}
+int MasterMind::goal(const solution_t& guess) {
+    lastScore.clear();
+    //std::cout<<"->GOOL GUESS: "<<guess;
+    int totalCorrect = 0;
+    auto solutionMap = mapGuessSolution(guess);
+    for (auto solution: guessSolution) {
+        //std::cout<<"->solution: "<<solution.first;
+        auto solutionMapCopy = solutionMap;
+        solution_t score(config.codeLength,0);
+        score = isInSolution(solutionMapCopy,solution.first,guess);
+        for(int i=0;i<solution.first.size();i++){
+           //std::cout<<solutionMapCopy;
+            if(score[i]==2)continue;
+           if(solutionMapCopy.count(solution.first[i]) <0 || solutionMapCopy[solution.first[i]] == 0)score[i] = 0;
+           else{
+               solutionMapCopy[solution.first[i]]--;
+               score[i]++;
+           }
+       }
+        auto v = getGoalValue(score,solution.second);
+        lastScore.emplace_back(score,v);
+       totalCorrect+=v;
+       //std::cout<<"<->solution"<<std::endl;;
+       //std::cout<<std::endl;
+
+    }
+   // std::cout<<"<-GOOL"<<std::endl;
     return totalCorrect;
 }
 
@@ -143,7 +184,7 @@ std::vector<solution_t> MasterMind::generateNeighbor() {
     return result;
 }
 
-std::vector<solution_t> MasterMind::generateNeighbor(const solution_t &currentSolution) {
+std::vector<solution_t> MasterMind::generateNeighbor(const solution_t &currentSolution) const {
     std::vector<solution_t> result;
     for (size_t i = 0; i < currentSolution.size(); ++i) {
         solution_t modified = currentSolution;
@@ -173,12 +214,7 @@ solution_t MasterMind::randomNeighbor(std::vector<solution_t> & neighbors) {
 
 
 solution_t MasterMind::getTheBestSolution() {
-    solution_t solutionL;
-   for(const auto& solutionColor: theBestSolution)
-   {
-       solutionL.push_back(solutionColor);
-   }
-    return solutionL;
+    return theBestSolution;
 }
 
 void MasterMind::printSolve() {
@@ -187,7 +223,7 @@ void MasterMind::printSolve() {
 
     std::cout<<goal(theBestSolution);
     std::cout<<std::endl;
-
+    for(const auto& e:lastScore)std::cout<<"score->"<<e.first<<e.second<<std::endl;
     auto end_time = std::chrono::system_clock::now();
     auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
 
@@ -196,12 +232,12 @@ void MasterMind::printSolve() {
 }
 
 void MasterMind::setSolution(solution_t guess) {
-    theBestSolution = guess;
+    theBestSolution = std::move(guess);
 }
 bool MasterMind::isInParams(Param p)
 {
     return std::find(config.params.begin(), config.params.end(), p) != config.params.end();
 }
-bool MasterMind::fullCompatibility(solution_t guess){
+bool MasterMind::fullCompatibility(const solution_t& guess){
     return goal(guess) == config.codeLength*2;
 }
