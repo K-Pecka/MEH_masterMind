@@ -1,35 +1,22 @@
 #include "MasterMind_tabu.h"
 
-std::ostream& operator<<(std::ostream& o, const color_set& result){
-    for (const auto& set_of_colors : result) {
-        o << "{ ";
-        for (const auto& color : set_of_colors) {
-            o << color << " ";
-        }
-        o << "}" <<std::endl;
-    }
-    return o;
-}
 solution_t MasterMind_tabu::solve() {
-    tabu.clear();
-    tabu_size = config.tabuSize;
-    solutionHistory.clear();
     if (config.communication) std::cout << "Solution found (Tabu):" << std::endl;
     setSolution(generateRandomSolution());
+
     auto neighbor = getTheBestSolution();
     addToTabu(getTheBestSolution());
-    int counter = config.maxInteraction;
 
-    while (counter--) {
-        std::vector<solution_t> neighbors = neighborsInTabu(generateNeighbor(neighbor));
-        if (neighbors.empty()) {
-            if (!solutionHistory.empty()) {
-                neighbor=solutionHistory.back();
-                solutionHistory.pop_back();
-                continue;
-            }
-            break;
-        }
+    while (config.maxInteraction--) {
+       auto  neighbors = neighborsInTabu(generateNeighbor(neighbor));
+       if (neighbors.empty()) {
+           if (!solutionHistory.empty()) {
+               neighbor=solutionHistory.back();
+               solutionHistory.pop_back();
+               continue;
+           }
+           break;
+       }
 
         neighbor = theBestNeighbor(neighbors);
         betterSolution(neighbor);
@@ -42,17 +29,13 @@ solution_t MasterMind_tabu::solve() {
 std::vector<solution_t> MasterMind_tabu::neighborsInTabu(const std::vector<solution_t>& neighbors){
     std::vector<solution_t> neighborsInTabu;
     for (const auto &neighbor: neighbors) {
-        if (!isInTabu(neighbor)) {
-            neighborsInTabu.push_back(neighbor);
-        }
+        if (!isInTabu(neighbor))neighborsInTabu.push_back(neighbor);
     }
     return neighborsInTabu;
 }
 void MasterMind_tabu::addToTabu(const solution_t& solution) {
     tabu.insert(solution);
-    if (tabu.size() > tabu_size) {
-        tabu.erase(tabu.begin());
-    }
+    if (tabu.size() > config.tabuSize)tabu.erase(tabu.begin());
 }
 bool MasterMind_tabu::isInTabu(const solution_t& solution) {
     return tabu.find(solution) != tabu.end();

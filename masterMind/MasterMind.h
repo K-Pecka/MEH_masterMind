@@ -23,7 +23,7 @@ enum Param{
     DETERMINISTIC,SWAP, DOUBLE_POINT,FITNESS
 };
 struct GA{
-    int generation = 20;
+    int generation = 100;
     int population = 200;
     int eliteSize = 15;
     double crossoverProb=0.9;
@@ -37,7 +37,7 @@ struct Config {
     bool testMode = false;
     int codeLength = 10;
     bool communication = true;
-    int maxInteraction = 10000;
+    int maxInteraction = (int)std::pow(10,5);
     int tabuSize = 1000;
     GA GAConfig;
     std::vector<Param> params;
@@ -86,4 +86,4 @@ protected:
 };
 
 
-#endif //MEH_PJWSTK_MASTERMIND_H
+#endif //MEH_PJWSTK_MASTERMI

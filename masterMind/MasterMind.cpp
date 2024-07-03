@@ -220,16 +220,19 @@ solution_t MasterMind::getTheBestSolution() {
 }
 
 void MasterMind::printSolve() {
+
     auto start_time = std::chrono::system_clock::now();
     std::cout << solve();
-
+    std::cout<<"======SOLVE=========="<<std::endl;
     std::cout<<goal(theBestSolution);
-    for(const auto& e:lastScore)std::cout<<std::endl<<"score->"<<std::endl<<e.first<<"goal: "<<e.second<<std::endl<<"<-";
+    if(config.communication)
+        for(const auto& e:lastScore)std::cout<<std::endl<<"score->"<<std::endl<<e.first<<"goal: "<<e.second<<std::endl<<"<-";
     auto end_time = std::chrono::system_clock::now();
     auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
     std::cout<<std::endl;
-    if(!config.testMode)std::cout<< computation_time.count()<< " microseconds" << std::endl;
+    if(!config.testMode)std::cout<< computation_time.count()<< " ms" << std::endl;
     else std::cout<<computation_time.count()<<std::endl;
+    std::cout<<"====================="<<std::endl;
 }
 
 void MasterMind::setSolution(solution_t guess) {
@@ -240,5 +243,11 @@ bool MasterMind::isInParams(Param p)
     return std::find(config.params.begin(), config.params.end(), p) != config.params.end();
 }
 bool MasterMind::fullCompatibility(const solution_t& guess){
-    return goal(guess) == config.codeLength*2;
+    goal(guess);
+    for(auto& e:lastScore)
+    {
+        auto map =  mapGuessSolution(e.first);
+        if(map[2] == config.codeLength)return true;
+    }
+    return false;
 }
