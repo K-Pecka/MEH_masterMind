@@ -35,11 +35,11 @@ double MasterMind::randomFloat(double min, double max){
     uniform_real_distribution<double> dis(min, max);
     return dis(gen);
 }
-
 int MasterMind::randomColor() const
 {
     return randomInt(0, config.colorLength);
 }
+
 void MasterMind::init() {
     try {
         guessSolution =setLoadSolution(config.pathSolutionFile);
@@ -95,7 +95,8 @@ solutions MasterMind::loadFile(const std::string& path) {
         if (iss2.fail() && !iss2.eof()) {
             throw std::runtime_error("Error: Invalid integer value in line: " + line2);
         }
-
+        auto max = std::max_element(temp1.begin(), temp1.end());
+        if(max != temp1.end())  config.colorLength = std::max(*max,config.colorLength);
         content.emplace_back(std::make_pair(temp1, temp2));
     }
 
@@ -126,8 +127,9 @@ std::unordered_map<int,int> mapGuessSolution( const solution_t& guess)
 }
 int getGoalValue(const solution_t& score, const solution_t& value) {
     int result = 0;
-    for (int i = 0; i < score.size(); i++) {
-        result += score[i] - value[i];
+    auto map = mapGuessSolution(score);
+    for (int i=0;i<2;i++) {
+        result += (map[i+1] - value[i] )*(i+1);
     }
     return result;
 }
@@ -156,7 +158,7 @@ int MasterMind::goal(const solution_t& guess) {
         score = isInSolution(solutionMapCopy,solution.first,guess);
         for(int i=0;i<solution.first.size();i++){
            //std::cout<<solutionMapCopy;
-            if(score[i]==2)continue;
+           if(score[i]==2)continue;
            if(solutionMapCopy.count(solution.first[i]) <0 || solutionMapCopy[solution.first[i]] == 0)score[i] = 0;
            else{
                solutionMapCopy[solution.first[i]]--;
@@ -166,7 +168,7 @@ int MasterMind::goal(const solution_t& guess) {
         auto v = getGoalValue(score,solution.second);
         lastScore.emplace_back(score,v);
        totalCorrect+=v;
-       //std::cout<<"<->solution"<<std::endl;;
+       //std::cout<<"->score"<<score<<std::endl;
        //std::cout<<std::endl;
 
     }
@@ -222,13 +224,12 @@ void MasterMind::printSolve() {
     std::cout << solve();
 
     std::cout<<goal(theBestSolution);
-    std::cout<<std::endl;
-    for(const auto& e:lastScore)std::cout<<"score->"<<e.first<<e.second<<std::endl;
+    for(const auto& e:lastScore)std::cout<<std::endl<<"score->"<<std::endl<<e.first<<"goal: "<<e.second<<std::endl<<"<-";
     auto end_time = std::chrono::system_clock::now();
     auto computation_time = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
-
+    std::cout<<std::endl;
     if(!config.testMode)std::cout<< computation_time.count()<< " microseconds" << std::endl;
-    else std::cout << computation_time.count()<< std::endl;
+    else std::cout<<computation_time.count()<<std::endl;
 }
 
 void MasterMind::setSolution(solution_t guess) {

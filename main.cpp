@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
             while (i + 1 < args.size() && args[i + 1][0] != '-') {
                 std::string paramStr = args[++i];
                 toLowerCase(paramStr);
+                std::cout<<paramStr<<std::endl;
                 if (params.count(paramStr)) {
                     config.params.push_back(params[paramStr]);
 

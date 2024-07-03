@@ -31,16 +31,16 @@ struct GA{
 
 };
 struct Config {
-    std::string selected_solver = "solve_tabu";
+    std::string selected_solver = "solve_hillClimbing";
     int colorLength = 5;
     std::string pathSolutionFile = "../data/solution.txt";
     bool testMode = false;
-    int codeLength = 30;
-    bool communication = false;
-    int maxInteraction = 1000;
+    int codeLength = 10;
+    bool communication = true;
+    int maxInteraction = 10000;
     int tabuSize = 1000;
     GA GAConfig;
-    std::vector<Param> params = std::vector<Param>(3);
+    std::vector<Param> params;
 };
 
 std::ostream& operator<<(std::ostream&, const solution_t&);
@@ -55,7 +55,7 @@ public:
     static double randomFloat(double,double);
     static std::mt19937 random();
 
-    static solutions loadFile(const std::string&) ;
+    solutions loadFile(const std::string&) ;
     solutions setLoadSolution(const std::string&);
     void init();
 

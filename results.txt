@@ -1,6 +1,19 @@
-D E G C K C K E L K M C J C I J J H A E E G F K I F L A D I 
-D E G C E C C E K K A J J I I J C H L E E G F F I F E A C I 
-2 2 2 2 1 2 1 2 1 2 1 1 2 1 2 2 1 2 1 2 2 2 2 1 2 2 1 2 1 2 
-49/60
-81.6667%
-14805405 microseconds
+deterministic
+1
+Solution found (Hill climbing deterministic): 
+
+S>7 6 6 1 4 
+N>7 6 6 0 4 
+
+-7>-5
+7 6 6 1 4 
+-5
+score->1 1 1 0 0 
+0
+score->0 2 0 0 0 
+1
+score->0 0 1 1 0 
+-2
+score->0 1 0 0 0 
+-4
+7558 microseconds
