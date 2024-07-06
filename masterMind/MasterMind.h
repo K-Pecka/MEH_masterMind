@@ -90,4 +90,4 @@ protected:
     solutions guessSolution;
 };
 
-#endif //MEH_PJWSTK_MASTERMI
+#endif //MEH_PJWSTK_MASTERMIND_H
