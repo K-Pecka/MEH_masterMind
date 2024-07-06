@@ -3,12 +3,11 @@
 solution_t MasterMind_tabu::solve() {
     if (config.communication) std::cout << "Solution found (Tabu):" << std::endl;
     setSolution(generateRandomSolution());
-
     auto neighbor = getTheBestSolution();
     addToTabu(getTheBestSolution());
 
     while (config.maxInteraction--) {
-       auto  neighbors = neighborsInTabu(generateNeighbor(neighbor));
+       auto neighbors = neighborsInTabu(generateNeighbor(neighbor));
        if (neighbors.empty()) {
            if (!solutionHistory.empty()) {
                neighbor=solutionHistory.back();
@@ -17,20 +16,18 @@ solution_t MasterMind_tabu::solve() {
            }
            break;
        }
+       neighbor = theBestNeighbor(neighbors);
+       betterSolution(neighbor);
 
-        neighbor = theBestNeighbor(neighbors);
-        betterSolution(neighbor);
-
-        addToTabu(neighbor);
-        solutionHistory.push_back(neighbor);
+       addToTabu(neighbor);
+       solutionHistory.push_back(neighbor);
     }
     return getTheBestSolution();
 }
 std::vector<solution_t> MasterMind_tabu::neighborsInTabu(const std::vector<solution_t>& neighbors){
     std::vector<solution_t> neighborsInTabu;
-    for (const auto &neighbor: neighbors) {
+    for (const auto &neighbor: neighbors)
         if (!isInTabu(neighbor))neighborsInTabu.push_back(neighbor);
-    }
     return neighborsInTabu;
 }
 void MasterMind_tabu::addToTabu(const solution_t& solution) {

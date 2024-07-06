@@ -2,6 +2,7 @@
 #define MEH_PJWSTK_MASTERMIND_GENETIC_H
 
 #include "../../masterMind/MasterMind.h"
+
 class MasterMind_genetic: public MasterMind {
 public:
     MasterMind_genetic() = default;
@@ -24,7 +25,6 @@ private:
     bool terminationConditionGenerations();
     bool terminationConditionFitness();
     std::vector<solution_t> selectWithOutElites(int eliteSize);
-
     std::vector<solution_t> crossoverParents(std::vector<int> vector1, auto crossover);
 };
 

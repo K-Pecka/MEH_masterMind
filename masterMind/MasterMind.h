@@ -20,7 +20,10 @@ using solution_t = std::vector<int>;
 using solutions = std::vector<std::pair<solution_t, solution_t>>;
 
 enum Param{
-    DETERMINISTIC,SWAP, DOUBLE_POINT,FITNESS
+    DETERMINISTIC,
+    SWAP,
+    DOUBLE_POINT,
+    FITNESS
 };
 struct GA{
     int generation = 100;
@@ -28,22 +31,22 @@ struct GA{
     int eliteSize = 15;
     double crossoverProb=0.9;
     double mutationProb=0.01;
-
 };
 struct Config {
-    std::string selected_solver = "solve_hillClimbing";
+    std::string selected_solver = "solve_genetic";
     int colorLength = 5;
     std::string pathSolutionFile = "../data/solution.txt";
     bool testMode = false;
     int codeLength = 10;
-    bool communication = true;
-    int maxInteraction = (int)std::pow(10,5);
+    bool communication = false;
+    int maxInteraction = (int)std::pow(10,3);
     int tabuSize = 1000;
     GA GAConfig;
     std::vector<Param> params;
 };
 
 std::ostream& operator<<(std::ostream&, const solution_t&);
+std::ostream& operator<<(std::ostream& o, const std::unordered_map<int,int>& g);
 
 class MasterMind{
 public:
@@ -51,32 +54,34 @@ public:
     explicit MasterMind(Config configGame) : config(std::move(configGame)) {init();}
     virtual solution_t solve() = 0;
 
-    static int randomInt(int,int);
-    static double randomFloat(double,double);
-    static std::mt19937 random();
-
-    solutions loadFile(const std::string&) ;
-    solutions setLoadSolution(const std::string&);
-    void init();
-
-    void printSolve();
+    solution_t getTheBestSolution();
     void setSolution(solution_t);
 
+    static std::mt19937 random();
+    static int randomInt(int,int);
+    static double randomFloat(double,double);
+    int randomColor() const;
+    int randomPosition() const;
+
+    void init();
 
     solution_t generateRandomSolution() const;
 
-    solution_t getTheBestSolution();
-    bool betterSolution(const solution_t &);
+    solutions setLoadSolution(const std::string&);
+    solutions loadFile(const std::string&) ;
 
-    int randomColor() const;
+    bool betterSolution(const solution_t &);
 
     int goal(const solution_t &guess);
 
     std::vector<solution_t> generateNeighbor(const solution_t& currentSolution) const;
     std::vector<solution_t> generateNeighbor();
-    bool fullCompatibility(const solution_t&);
+
     solution_t theBestNeighbor(std::vector<solution_t>&);
     static solution_t randomNeighbor(std::vector<solution_t>&);
+
+    void printSolve();
+    bool fullCompatibility(const solution_t&);
     bool isInParams(Param);
 protected:
     std::vector<std::pair<solution_t,int>> lastScore;
@@ -84,6 +89,5 @@ protected:
     solution_t theBestSolution;
     solutions guessSolution;
 };
-
 
 #endif //MEH_PJWSTK_MASTERMI

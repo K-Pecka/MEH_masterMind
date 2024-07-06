@@ -2,6 +2,7 @@
 #define MEH_PJWSTK_MASTERMIND_ANNEALING_H
 
 #include "../../masterMind/MasterMind.h"
+
 class MasterMind_annealing: public MasterMind{
 public:
     MasterMind_annealing() = default;

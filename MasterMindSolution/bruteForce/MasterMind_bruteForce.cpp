@@ -1,28 +1,19 @@
 #include "MasterMind_bruteForce.h"
 
 solution_t MasterMind_bruteForce::solve()  {
-    if (config.communication) std::cout << "Solution found (BF): ";
+    if (config.communication)
+        std::cout << "Solution found (BF): "<<std::endl;
     solution_t currentCombination(config.codeLength, 0);
-    int counter = config.maxInteraction;
-
-    generateCombinations(0, currentCombination, counter);
-
+    generateCombinations(currentCombination,0);
     return getTheBestSolution();
 }
-bool MasterMind_bruteForce::generateCombinations(int position, solution_t& currentCombination, int& counter) {
-    if (counter <= 0) {
-
-        throw std::runtime_error("Too long time");
+void MasterMind_bruteForce::generateCombinations(solution_t& combination, int position) {
+    if (position == config.codeLength) {
+        betterSolution(combination);
+        return;
     }
-    if (position == currentCombination.size()) {
-        --counter;
-        return false;
+    for (int color = 0; color < config.colorLength; ++color) {
+        combination[position] = color;
+        generateCombinations(combination, position + 1);
     }
-    for (int i=0;i<config.colorLength;i++) {
-        currentCombination[position] = i;
-        if (generateCombinations(position + 1, currentCombination, counter)) {
-            return true;
-        }
-    }
-    return false;
 }
